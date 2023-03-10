@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    /* outline: 1px solid limegreen !important; */
+    /* background: rgba(0, 100, 0, 0.1); */
+}
+
+.hero_sec {
+    background: url('../public/assets/heroSec.png');
+    background-repeat: no-repeat;
+}
+
+@layer components {
+    .btn-primary {
+        @apply text-primary border rounded-3xl px-5 py-2 w-36 hover:bg-primary hover:text-white transition-all capitalize
+    }
+}
+
+.active {
+    color: #B20000;
+}
+
+.input_text_editor:empty:before {
+    content: attr(data-placeholder);
+    font-size: 16px;
+    opacity: 0.4;
+}
+
+.text-area>[href] {
+    color: blue !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #828282;
+    -webkit-border-radius: 10px;
+    border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 0px;
+    background: #B20000;
+}
