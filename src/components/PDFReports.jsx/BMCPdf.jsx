@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
         width: 1150
     },
     firstRow: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
+        // flexDirection: 'row',
         borderWidth: 1,
         borderColor: '#333',
         width: 230,
         height: 500,
         borderLeft: "none",
-        borderTop: "none"
+        borderTop: "none",
+        // whiteSpace: "pre-wrap"
     },
     firstRowInner: {
         flexDirection: 'row',
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
         marginVertical: 3,
         fontFamily: "Roboto",
         fontWeight: "normal",
-        width: 230
+        // width: 230,
+        // overflow: "hidden"
     }
 });
 
@@ -159,6 +160,7 @@ export default function BMCPdf({ form }) {
                         })
                         const classStyle = StyleSheet.create({
                             list: {
+                                flexDirection: "row",
                                 fontSize: 12,
                                 marginHorizontal: 10,
                                 width: 230,
@@ -300,7 +302,8 @@ export default function BMCPdf({ form }) {
                                 fontSize: 12,
                                 marginHorizontal: 10,
                                 width: 230,
-                                fontFamily: (ele.bold) ? "Roboto-Bold" : (ele.italic) ? "Roboto-Italic" : "Roboto-Regular"
+                                fontFamily: (ele.bold) ? "Roboto-Bold" : (ele.italic) ? "Roboto-Italic" : "Roboto-Regular",
+                                // whiteSpace: "pre-wrap"
                                 // fontWeight: ele.bold ? "normal" ? (ele.italic) : "bold" : null
                             }
                         })

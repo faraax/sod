@@ -2,6 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { BiLink, BiUnlink } from 'react-icons/bi';
 import { useGlobalState } from '../../Hooks/useGlobalState';
 
+const limits = {
+    KeyPartnerships: 728,
+    KeyActivities: 364,
+    ValuePropositions: 728,
+    CustomerRelationships: 364,
+    CustomerSegments: 728,
+    Channels: 364,
+    KeyResources: 364,
+    RevenueStreams: 420,
+    CostStructure: 420,
+    BrainstormingNotes: 728
+}
 
 export default function TextInputField({ setInpActive, objName }) {
     const containerRef = useRef(null);
@@ -27,6 +39,8 @@ export default function TextInputField({ setInpActive, objName }) {
         if (e.target.innerHTML.startsWith('&nbsp;')) {
             setInpValue('');
         } else {
+            const maxLength = 28;
+            validatedContent = validatedContent.replace(new RegExp(`(.{${maxLength}})`, 'g'), '$1\n');
             setInpValue(validatedContent);
         }
     };
@@ -37,9 +51,18 @@ export default function TextInputField({ setInpActive, objName }) {
                 if (inpValue === '') {
                     setInpActive(false);
                 } else {
-                    // setText([...text, inpValue]);
-                    setInpActive(false);
-                    dispatch({ type: "UPDATEFORM", payload: { ...form, [objName]: { list: [...form[objName].list, inpValue] } } })
+                    const objLen = form[objName].list.length
+                    const inpArr = [inpValue]
+                    const totalLen = objLen + inpArr.length
+                    const lim = limits[objName] / 28
+                    // console.log({ totalLen, lim });
+                    if (totalLen <= lim) {
+                        dispatch({ type: "UPDATEFORM", payload: { ...form, [objName]: { list: [...form[objName].list, inpValue] } } })
+                        setInpActive(false);
+                    } else {
+                        console.log("Inp => Limitation exceeded!");
+                        setInpActive(false);
+                    }
                 }
             }
         };
@@ -57,9 +80,21 @@ export default function TextInputField({ setInpActive, objName }) {
                 if (inpValue === '') {
                     setInpActive(false);
                 } else {
+                    const objLen = form[objName].list.length
+                    const inpArr = [inpValue]
+                    const totalLen = objLen + inpArr.length
+                    const lim = limits[objName] / 28
+                    // console.log({ totalLen, lim });
+                    if (totalLen <= lim) {
+                        dispatch({ type: "UPDATEFORM", payload: { ...form, [objName]: { list: [...form[objName].list, inpValue] } } })
+                        setInpActive(false);
+                    } else {
+                        console.log("Inp => Limitation exceeded!");
+                        setInpActive(false);
+                    }
                     // setText([...text, inpValue]);
-                    setInpActive(false);
-                    dispatch({ type: "UPDATEFORM", payload: { ...form, [objName]: { list: [...form[objName].list, inpValue] } } })
+                    // setInpActive(false);
+                    // dispatch({ type: "UPDATEFORM", payload: { ...form, [objName]: { list: [...form[objName].list, inpValue] } } })
                 }
             }
         }

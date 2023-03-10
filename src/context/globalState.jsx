@@ -9,34 +9,44 @@ const initialState = {
     form:
     {
         KeyPartnerships: {
-            list: []
+            list: [],
+            limit: 924
         },
         KeyActivities: {
-            list: []
+            list: [],
+            limit: 462
         },
         ValuePropositions: {
-            list: []
+            list: [],
+            limit: 924
         },
         CustomerRelationships: {
-            list: []
+            list: [],
+            limit: 462
         },
         CustomerSegments: {
-            list: []
+            list: [],
+            limit: 924
         },
         Channels: {
-            list: []
+            list: [],
+            limit: 462
         },
         KeyResources: {
-            list: []
+            list: [],
+            limit: 462
         },
         RevenueStreams: {
-            list: []
+            list: [],
+            limit: 924
         },
         CostStructure: {
-            list: []
+            list: [],
+            limit: 924
         },
         BrainstormingNotes: {
-            list: []
+            list: [],
+            limit: 924
         },
     }
 }

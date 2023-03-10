@@ -4,6 +4,19 @@ import TextInputField from './TextInputField';
 import List from './List';
 import { useGlobalState } from '../../Hooks/useGlobalState';
 
+const limits = {
+    KeyPartnerships: 728,
+    KeyActivities: 364,
+    ValuePropositions: 728,
+    CustomerRelationships: 364,
+    CustomerSegments: 728,
+    Channels: 364,
+    KeyResources: 364,
+    RevenueStreams: 420,
+    CostStructure: 420,
+    BrainstormingNotes: 728
+}
+
 export default function EditableDiv({ list, title, objName }) {
     const [inpActive, setInpActive] = useState(false);
     const { dispatch, form } = useGlobalState();
@@ -36,6 +49,12 @@ export default function EditableDiv({ list, title, objName }) {
         const newItems = [...form[objName].list];
         newItems[index] = newValue;
         dispatch({ type: "UPDATEFORM", payload: { ...form, [objName]: { list: newItems } } })
+    }
+
+    const handleTopPercentage = (objeName) => {
+        const maxLen = limits[objeName] / 28
+        const percentage = Math.floor(form[objeName].list.length / maxLen * 100)
+        return percentage
     }
     return (
         <>
@@ -73,23 +92,26 @@ export default function EditableDiv({ list, title, objName }) {
                 <div className='px-4'>
                     {
                         (form[objName].list !== "" || form[objName].list !== null) && (
-                            form[objName].list?.map((value, index) => (
-                                <div
-                                    draggable
-                                    onDragStart={(e) => (dragItem.current = index)}
-                                    onDragEnter={(e) => (dragOverItem.current = index)}
-                                    onDragEnd={handleSort}
-                                    onDragOver={(e) => e.preventDefault()}
-                                    key={index}
-                                >
-                                    <List
-                                        value={value}
-                                        handleEdit={handleEdit}
-                                        index={index}
-                                        objName={objName}
-                                    />
-                                </div>
-                            ))
+                            form[objName].list?.map((value, index) => {
+                                value = value.replace(/\n/g, "");
+                                return (
+                                    <div
+                                        draggable
+                                        onDragStart={(e) => (dragItem.current = index)}
+                                        onDragEnter={(e) => (dragOverItem.current = index)}
+                                        onDragEnd={handleSort}
+                                        onDragOver={(e) => e.preventDefault()}
+                                        key={index}
+                                    >
+                                        <List
+                                            value={value}
+                                            handleEdit={handleEdit}
+                                            index={index}
+                                            objName={objName}
+                                        />
+                                    </div>
+                                )
+                            })
                         )
                     }
                 </div>
@@ -109,7 +131,7 @@ export default function EditableDiv({ list, title, objName }) {
                                 </p>
                             ) : <div
                                 onClick={() => setInpActive(true)}
-                                className='px-5 py-3 text-primary font-semibold flex items-center text-lg hover:text-opacity-60 cursor-pointer'>
+                                className={`${handleTopPercentage(objName) === 100 ? "hidden" : "block"} px-5 py-3 text-primary font-semibold flex items-center text-lg hover:text-opacity-60 cursor-pointer`}>
                                 <h3>
                                     <span>+</span>
                                     Add More

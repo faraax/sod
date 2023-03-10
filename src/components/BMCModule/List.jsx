@@ -21,7 +21,7 @@ export default function List({ value, handleEdit, index, objName }) {
         <div
             onDoubleClick={() => setNewInpValue(true)}>
             {
-                newInpValue && <EditInput handleEdit={handleEdit} index={index} setNewInpValue={setNewInpValue} valueToEdit={value} />
+                newInpValue && <EditInput handleEdit={handleEdit} index={index} setNewInpValue={setNewInpValue} valueToEdit={value} objName={objName} />
             }
             {
                 !newInpValue && (
