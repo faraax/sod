@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useGlobalState } from "../Hooks/useGlobalState";
 import EditableDiv from '../components/BMCModule/EditableDiv';
 import BrainstormingSec from '../components/BMCModule/BrainstormingSec';
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import BMCPdf from '../components/PDFReports.jsx/BMCPdf';
 import Percentage from '../components/BMCModule/Percentage';
 
@@ -52,11 +52,11 @@ export default function BMCModule() {
         (page <= 1) ? setPage(length) && setPage(page - 1) : setPage(page - 1);
     };
 
-    const handleGetData = async () => {
-        // const { data } = await axios.get(`http://localhost:8080/getData`)
-        // dispatch({ type: "UPDATEFORMDB", payload: data })
-        console.log(form);
-    }
+    // const handleGetData = async () => {
+    //     // const { data } = await axios.get(`http://localhost:8080/getData`)
+    //     // dispatch({ type: "UPDATEFORMDB", payload: data })
+    //     console.log(form);
+    // }
 
     return (
         <div className='px-24 py-10'>
@@ -79,14 +79,10 @@ export default function BMCModule() {
                     </h3>
                 </div>
                 <div className='flex ml-auto gap-3'>
-                    {/* <button
-                        onClick={handleGetData}
-                        className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg"> */}
                     <PDFDownloadLink document={<BMCPdf form={form} />} fileName={id} className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
                         <BiDownload className="text-xl" />
                         Download
                     </PDFDownloadLink>
-                    {/* </button> */}
                     <button
                         onClick={handlePostForm}
                         className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
