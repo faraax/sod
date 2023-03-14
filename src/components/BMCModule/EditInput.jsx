@@ -1,24 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { BiLink, BiUnlink } from 'react-icons/bi';
-import { useGlobalState } from '../../Hooks/useGlobalState';
+// import { useGlobalState } from '../../Hooks/useGlobalState';
 
-const limits = {
-    KeyPartnerships: 728,
-    KeyActivities: 364,
-    ValuePropositions: 728,
-    CustomerRelationships: 364,
-    CustomerSegments: 728,
-    Channels: 364,
-    KeyResources: 364,
-    RevenueStreams: 420,
-    CostStructure: 420,
-    BrainstormingNotes: 728
-}
+// const limits = {
+//     KeyPartnerships: 728,
+//     KeyActivities: 364,
+//     ValuePropositions: 728,
+//     CustomerRelationships: 364,
+//     CustomerSegments: 728,
+//     Channels: 364,
+//     KeyResources: 364,
+//     RevenueStreams: 420,
+//     CostStructure: 420,
+//     BrainstormingNotes: 728
+// }
 
 export default function EditInput({ handleEdit, index, setNewInpValue, valueToEdit, objName }) {
     const containerRef = useRef(null)
     const [inpValue, setInpValue] = useState('')
-    const { form } = useGlobalState()
+    // const { form } = useGlobalState()
 
     const handleInput = (e) => {
         const allowedTags = ["i", "b", "a"];
