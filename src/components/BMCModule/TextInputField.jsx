@@ -18,7 +18,7 @@ const limits = {
 export default function TextInputField({ setInpActive, objName }) {
     const containerRef = useRef(null);
     const [inpValue, setInpValue] = useState('');
-    const { dispatch, form } = useGlobalState()
+    const { dispatch, form } = useGlobalState();
 
     const handleInput = (e) => {
         const allowedTags = ["i", "b", "a"];
@@ -118,6 +118,7 @@ export default function TextInputField({ setInpActive, objName }) {
     const handleFontUnLink = (fontUnLink) => {
         document.execCommand(fontUnLink, false, '');
     };
+
     return (
         <div ref={containerRef}>
             <div className='flex'>

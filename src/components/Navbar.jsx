@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,11 +12,13 @@ export default function Navbar() {
         <>
             <nav className="flex items-center gap-10 px-16 py-5 sticky top-0 bg-white h-28 shadow-md z-10">
                 <div className="flex items-center gap-10 mr-auto">
-                    <img
-                        src={'../../assets/SteveOnDigital-Logo.png'}
-                        alt="Steve On Digital"
-                        className="w-44 h-24"
-                    />
+                    <Link to="/">
+                        <img
+                            src={'../../assets/SteveOnDigital-Logo.png'}
+                            alt="Steve On Digital"
+                            className="w-44 h-24 cursor-pointer"
+                        />
+                    </Link>
                     <ul className={`${isOpen ? 'block' : 'hidden'} lg:flex lg:items-center gap-10 lg:justify-between w-full lg:w-auto text-xl cursor-pointer font-medium`}>
                         <li className="hover:text-primary text-secondary">
                             <NavLink to="/">Home</NavLink>
