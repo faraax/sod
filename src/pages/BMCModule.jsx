@@ -8,49 +8,174 @@ import BrainstormingSec from '../components/BMCModule/BrainstormingSec';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import BMCPdf from '../components/PDFReports.jsx/BMCPdf';
 import Percentage from '../components/BMCModule/Percentage';
+import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function BMCModule() {
-    const { form, dispatch } = useGlobalState();
-    const [page, setPage] = useState(1);
-    const [length, setLength] = useState(null);
+    const { form, dispatch, user } = useGlobalState();
+    // const [page, setPage] = useState(1);
+    // const [length, setLength] = useState(null);
+    const [canvas, setCanvas] = useState(["asdasd", 'asdasdasd']);
+    const [canvasName, setCanvasName] = useState('');
     const [id, setId] = useState(null);
+    const token = Cookies.get('sodIdToken');
 
     const handlePostForm = async () => {
         if (id) {
-            await axios.put("http://localhost:8080/editData/", { form, id })
+            try {
+                const resp = await axios.post(`${process.env.REACT_APP_API}/update-canvas`, { google_id: user.data.google_id, canvas_name: id, canvas: form }, {
+                    headers: {
+                        "ngrok-skip-browser-warning": true,
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                toast.success(resp.data.message, {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: true,
+                    theme: "colored",
+                });
+                console.log(resp.data.message);
+                // console.log(form);
+            } catch (err) {
+                console.log(err);
+            }
         } else {
-            await axios.post("http://localhost:8080/addData/", form)
+            try {
+                if (canvasName.length > 0) {
+                    const resp = await axios.post(`${process.env.REACT_APP_API}/save-canvas`, { google_id: user.data.google_id, canvas_name: canvasName, canvas: form }, {
+                        headers: {
+                            "ngrok-skip-browser-warning": true,
+                            "Authorization": `Bearer ${token}`
+                        }
+                    })
+                    toast.success(`Canvas Posted Successfully`, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: true,
+                        theme: "colored",
+                    });
+                    setId(null)
+                    dispatch({ type: "RESET_STATE" })
+                    // console.log("sdf");
+                } else {
+                    toast.error(`Give the Name of Canvas`, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: true,
+                        theme: "colored",
+                    });
+                }
+            } catch (err) {
+                if (err.response.data) {
+                    toast.error(err.response.data.message, {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: true,
+                        theme: "colored",
+                    });
+                }
+                // console.log({ google_id: user.data.google_id, canvas_name: canvasName, canvas: form });
+                console.log(err);
+            }
+        }
+    }
+
+    const handleDelete = async () => {
+        try {
+            const resp = await axios.post(`${process.env.REACT_APP_API}/delete-canvas`, { canvas_name: id }, {
+                headers: {
+                    "ngrok-skip-browser-warning": true,
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            dispatch({ type: "RESET_STATE" })
+            // toast.success(resp.data.message, {
+            //     position: "bottom-right",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: true,
+            //     theme: "colored",
+            // });
+            console.log(resp.data.message);
+            // console.log(form);
+        } catch (err) {
+            console.log(err);
         }
     }
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data: { formData, length } } = await axios.get(`http://localhost:8080/getData?page=${page}`)
-                setLength(length);
-                if (formData.length > 0) {
-                    dispatch({ type: "UPDATEFORMDB", payload: formData[0] })
-                    setId(formData[0]._id)
-                }
+                const { data } = await axios.get(`${process.env.REACT_APP_API}/get-canvas-names`, {
+                    headers: {
+                        "ngrok-skip-browser-warning": true,
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                setCanvas(data.data);
             } catch (err) {
                 console.log(err);
             }
         }
         fetchData()
-    }, [page, dispatch])
+        // console.log(user);
+    }, [id])
+
+    useEffect(() => {
+        const getCanvas = async () => {
+            try {
+                let canvas_name = id
+                const data = await axios.post(`${process.env.REACT_APP_API}/get-canvas`, { 'canvas_name': canvas_name }, {
+                    headers: {
+                        "ngrok-skip-browser-warning": true,
+                        "Authorization": `Bearer ${token}`,
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                })
+                dispatch({ type: "UPDATEFORM", payload: data.data.data.canvas })
+            } catch (err) {
+                console.log("get Canvas Err", err);
+            }
+        }
+        if (id) {
+            getCanvas()
+        }
+    }, [id])
 
     const handleCreateNewForm = () => {
         setId(null)
+        setCanvasName('')
         dispatch({ type: "RESET_STATE" })
     }
 
-    const handleNextPage = () => {
-        (page >= length) ? setPage(1) : setPage(page + 1);
-    };
+    // const handleNextPage = () => {
+    //     (page >= length) ? setPage(1) : setPage(page + 1);
+    // };
 
-    const handlePreviousPage = () => {
-        (page <= 1) ? setPage(length) && setPage(page - 1) : setPage(page - 1);
-    };
+    // const handlePreviousPage = () => {
+    //     (page <= 1) ? setPage(length) && setPage(page - 1) : setPage(page - 1);
+    // };
 
     // const handleGetData = async () => {
     //     // const { data } = await axios.get(`http://localhost:8080/getData`)
@@ -67,7 +192,17 @@ export default function BMCModule() {
                         onClick={handleCreateNewForm}>
                         Create BMC
                     </h3>
-                    <h3
+                    <select name="canvas" className='w-52 border px-5' value={id} defaultValue={id} onChange={(e) => setId(e.target.value)}>
+                        <option selected disabled>Unselect</option>
+                        {
+                            canvas && canvas.map((canvasName) => (
+                                // <React.Fragment key={canvasName._id}>
+                                <option value={canvasName.canvas_name} key={canvasName._id}>{canvasName.canvas_name}</option>
+                                // </React.Fragment>
+                            ))
+                        }
+                    </select>
+                    {/* <h3
                         className='text-xl text-secondary hover:text-primary font-medium cursor-pointer hover:border-b-2 hover:border-primary'
                         onClick={handlePreviousPage}>
                         View Previous
@@ -76,9 +211,12 @@ export default function BMCModule() {
                         className='text-xl text-secondary hover:text-primary font-medium cursor-pointer hover:border-b-2 hover:border-primary'
                         onClick={handleNextPage}>
                         View Next
-                    </h3>
+                    </h3> */}
                 </div>
                 <div className='flex ml-auto gap-3'>
+                    <div className='w-72'>
+                        <input type="text" name="Canvas" value={canvasName} placeholder='Type in the name of canvas' className='w-full px-5 py-3 border' required onChange={(e) => setCanvasName(e.target.value)} />
+                    </div>
                     <PDFDownloadLink document={
                         <Suspense fallback={<LoadingBtn />}>
                             <BMCPdf form={form} />
@@ -91,6 +229,11 @@ export default function BMCModule() {
                         onClick={handlePostForm}
                         className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
                         Save Template
+                    </button>
+                    <button
+                        onClick={handleDelete}
+                        className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
+                        Delete Canvas
                     </button>
                 </div>
             </div>
@@ -171,6 +314,18 @@ export default function BMCModule() {
                     <BMCPdf form={form} />
                 </PDFViewer>
             </div> */}
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </div >
     )
 }

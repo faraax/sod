@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { useGlobalState } from "../Hooks/useGlobalState";
+import useOAuth from "../Hooks/useOAuth";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const { user } = useGlobalState();
+    const [notify, notifyHome, handleLogout, handleOAuth, handleSignup] = useOAuth();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -20,13 +27,13 @@ export default function Navbar() {
                         />
                     </Link>
                     <ul className={`${isOpen ? 'block' : 'hidden'} lg:flex lg:items-center gap-10 lg:justify-between w-full lg:w-auto text-xl cursor-pointer font-medium`}>
-                        <li className="hover:text-primary text-secondary">
+                        <li className="hover:text-primary text-secondary" onClick={user ? notifyHome : null}>
                             <NavLink to="/">Home</NavLink>
                         </li>
                         <li className="hover:text-primary text-secondary group relative">
                             Tools
                             <ul className="absolute bg-white p-5 w-60 hidden group-hover:block">
-                                <li className="hover:text-primary text-secondary">
+                                <li className="hover:text-primary text-secondary" onClick={!user ? notify : null}>
                                     <NavLink to="BMC-Module">
                                         BMC Module System
                                     </NavLink>
@@ -54,12 +61,33 @@ export default function Navbar() {
                         />
                     </svg>
                 </button>
-
-                <div className="hidden gap-5 text-lg ml-auto lg:flex">
-                    <button className="btn-primary">Signup</button>
-                    <button className="btn-primary">Login</button>
-                </div>
+                {
+                    user && <h2>Welcome : {user.data.name}</h2>
+                }
+                {
+                    user && <button className="btn-primary" onClick={handleLogout}>Logout</button>
+                }
+                {
+                    !user && (
+                        <div className="hidden gap-5 text-lg ml-auto lg:flex">
+                            <button className="btn-primary" onClick={handleSignup}>Signup</button>
+                            <button className="btn-primary" onClick={handleOAuth}>Login</button>
+                        </div>
+                    )
+                }
             </nav>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
             <Outlet />
         </>
     )

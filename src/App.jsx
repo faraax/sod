@@ -1,39 +1,45 @@
 import React, { Suspense } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading";
 import Navbar from "./components/Navbar";
-// import BMCModule from "./pages/BMCModule";
+import { useGlobalState } from "./Hooks/useGlobalState";
 import Home from "./pages/Home";
 // import PdfViewer from "./pages/PdfViewer
+
 const BMCModule = React.lazy(() => import("./pages/BMCModule"))
 
 function App() {
+  const { user, authIsReady } = useGlobalState();
   return (
     <div className="font-sans">
-
-      <Routes>
-        <Route path="/" element={<Navbar />}>
-          <Route index element={<Home />} />
-          <Route path="BMC-Module" element={
-            <Suspense fallback={<Loading />}>
-              <BMCModule />
-            </Suspense>
-          } />
-          {/* <Route path="PdfViewer" element={<PdfViewer />} /> */}
-          {/* <Route path="aboutUs" element={<Dashboard />} /> */}
-          <Route path="*" element={<PageNotFound />} />
-        </Route>
-      </Routes>
+      {
+        authIsReady && (
+          <Routes>
+            <Route path="/" element={<Navbar />}>
+              <Route index element={!user ? <Home /> : <Navigate to={'/BMC-Module'} />} />
+              <Route path="BMC-Module" element={
+                user ? (
+                  <Suspense fallback={<Loading />}>
+                    <BMCModule />
+                  </Suspense>
+                ) : <Navigate to={'/'} />
+              } />
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+          </Routes>
+        )
+      }
     </div>
   );
 }
 
 export default App;
+
 function PageNotFound() {
   return (
-    <div className="mt-36">
-      <h2>Nothing to see here!</h2>
-      <p>
+    <div className="flex h-screen justify-center items-center flex-col">
+      <h2 className="text-2xl font-bold">404 Page Not Found</h2>
+      <p className="text-blue-400 underline">
         <Link to="/">Go to the home page</Link>
       </p>
     </div>

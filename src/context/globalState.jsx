@@ -1,4 +1,6 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 
 export const GlobalState = createContext();
@@ -9,44 +11,34 @@ const initialState = {
     form:
     {
         KeyPartnerships: {
-            list: [],
-            limit: 924
+            list: []
         },
         KeyActivities: {
-            list: [],
-            limit: 462
+            list: []
         },
         ValuePropositions: {
-            list: [],
-            limit: 924
+            list: []
         },
         CustomerRelationships: {
-            list: [],
-            limit: 462
+            list: []
         },
         CustomerSegments: {
-            list: [],
-            limit: 924
+            list: []
         },
         Channels: {
-            list: [],
-            limit: 462
+            list: []
         },
         KeyResources: {
-            list: [],
-            limit: 462
+            list: []
         },
         RevenueStreams: {
-            list: [],
-            limit: 924
+            list: []
         },
         CostStructure: {
-            list: [],
-            limit: 924
+            list: []
         },
         BrainstormingNotes: {
-            list: [],
-            limit: 924
+            list: []
         },
     }
 }
@@ -61,10 +53,10 @@ export const stateReducer = (state, action) => {
             return { ...state, user: action.payload, authIsReady: true }
         case "UPDATEFORM":
             return { ...state, form: action.payload }
-        case "UPDATEFORMDB":
-            return { form: action.payload }
+        // case "UPDATEFORMDB":
+        //     return { form: action.payload }
         case "RESET_STATE":
-            return initialState;
+            return { ...state, form: initialState.form };
         default:
             return state
     }
@@ -72,6 +64,38 @@ export const stateReducer = (state, action) => {
 
 export const GlobalStateProvider = ({ children }) => {
     const [state, dispatch] = useReducer(stateReducer, initialState)
+    const token = Cookies.get('sodIdToken');
+
+
+    const authIsReady = async () => {
+        if (token) {
+            let headersList = {
+                "ngrok-skip-browser-warning": true,
+                "Authorization": `Bearer ${token}`
+            }
+            let reqOptions = {
+                url: `${process.env.REACT_APP_API}/login`,
+                method: "GET",
+                headers: headersList,
+            }
+            try {
+                let response = await axios.request(reqOptions);
+                // dispatch({ type: "LOGIN", payload: response.data });
+                dispatch({ type: "AUTH_IS_READY", payload: response.data });
+            } catch (err) {
+                Cookies.remove("sodIdToken");
+                console.log(err.response.data.message);
+            }
+        } else {
+            dispatch({ type: "AUTH_IS_READY" });
+        }
+    }
+
+    useEffect(() => {
+        authIsReady()
+    }, [])
+
+
     return (
         <GlobalState.Provider value={{ ...state, dispatch }}>
             {children}
