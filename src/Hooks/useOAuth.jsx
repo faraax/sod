@@ -44,7 +44,7 @@ export default function useLogin() {
     const handleOAuth = useGoogleLogin({
         onSuccess: async respose => {
             try {
-                const res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+                await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
                     headers: {
                         "Authorization": `Bearer ${respose.access_token}`,
                     }
@@ -170,7 +170,7 @@ export default function useLogin() {
         if (signupUser) {
             signup(`${process.env.REACT_APP_API}/signup`)
         }
-    }, [token, loginUser, signupUser])
+    }, [token, loginUser, signupUser, dispatch, signupUserInfo, user.data.name])
 
-    return [notify, notifyHome, handleLogout, handleOAuth, handleSignup]
+    return { notify, notifyHome, handleLogout, handleOAuth, handleSignup }
 }

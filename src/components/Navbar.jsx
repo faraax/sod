@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const { user } = useGlobalState();
-    const [notify, notifyHome, handleLogout, handleOAuth, handleSignup] = useOAuth();
+    const { notify, notifyHome, handleLogout, handleOAuth, handleSignup } = useOAuth();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
