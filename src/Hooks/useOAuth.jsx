@@ -170,7 +170,7 @@ export default function useLogin() {
         if (signupUser) {
             signup(`${process.env.REACT_APP_API}/signup`)
         }
-    }, [token, loginUser, signupUser, dispatch, signupUserInfo, user.data.name])
+    }, [token, loginUser, signupUser, dispatch, signupUserInfo, user])
 
     return { notify, notifyHome, handleLogout, handleOAuth, handleSignup }
 }

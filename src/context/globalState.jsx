@@ -93,7 +93,6 @@ export const GlobalStateProvider = ({ children }) => {
 
     useEffect(() => {
         authIsReady()
-        // return () => authIsReady()
     }, [])
 
 
