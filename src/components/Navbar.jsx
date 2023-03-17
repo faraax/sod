@@ -64,14 +64,36 @@ export default function Navbar() {
                     </button>
                     {
                         isOpen && (
-                            <div className="absolute top-10 bg-white right-0 p-7 shadow-lg flex flex-col gap-5">
-                                <div className="flex gap-5">
-                                    <img src={user.data.picture} alt="Profile" srcSet="" className="w-12 h-12 rounded-full" />
-                                    <h2>{user.data.name}</h2>
-                                </div>
-                                <button className="btn-primary flex justify-center items-center gap-3" onClick={handleLogout}>
-                                    <FiLogOut /> Logout
-                                </button>
+                            <div className="absolute top-10 bg-white right-0 p-7 w-[250px] shadow-lg flex flex-col gap-5">
+                                {
+                                    user ? (
+                                        <>
+                                            <div className="flex gap-5">
+                                                <img src={user.data.picture} alt="Profile" srcSet="" className="w-12 h-12 rounded-full" />
+                                                <h2>{user.data.name}</h2>
+                                            </div>
+                                            <button className="btn-primary flex justify-center items-center gap-3" onClick={handleLogout}>
+                                                <FiLogOut /> Logout
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <ul className={`lg:flex lg:items-center gap-16 lg:justify-between w-full lg:w-auto text-xl cursor-pointer font-medium`}>
+                                            <li className="hover:text-primary text-secondary" onClick={user ? notifyHome : null}>
+                                                <NavLink to="/">Home</NavLink>
+                                            </li>
+                                            <li className="hover:text-primary text-secondary ">
+                                                Tools
+                                                <ul className="bg-white flex">
+                                                    <li className="hover:text-primary text-secondary" onClick={!user ? notify : null}>
+                                                        <NavLink to="BMC-Module">
+                                                            BMC Module System
+                                                        </NavLink>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    )
+                                }
                             </div>
                         )
                     }
