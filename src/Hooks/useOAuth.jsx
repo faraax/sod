@@ -10,6 +10,7 @@ export default function useLogin() {
     const [signupUserInfo, setSignupUserInfo] = useState(false);
     const [loginUser, setLoginUser] = useState(false);
     const { dispatch, user } = useGlobalState();
+    // const navigate = useNavigate();
     const token = Cookies.get('sodIdToken');
 
     const notify = () => toast.warn("Please Login First", {
@@ -36,8 +37,9 @@ export default function useLogin() {
 
     const handleLogout = () => {
         googleLogout()
-        dispatch({ type: "LOGOUT" });
         Cookies.remove("sodIdToken");
+        dispatch({ type: "LOGOUT" });
+        window.location.reload(false);
     }
 
     // Login

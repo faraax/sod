@@ -1,6 +1,6 @@
 export default function Loading() {
     return (
-        <div className="flex  justify-center items-center gap-2 text-gold p-3 rounded-lg font-bold h-screen cursor-wait">
+        <div className="flex justify-center items-center gap-2 text-gold p-3 rounded-lg font-bold h-screen cursor-wait">
             <svg className="h-20 w-20 animate-spin" viewBox="3 3 18 18">
                 <path
                     className="fill-gray-300"

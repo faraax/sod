@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { useGlobalState } from "../Hooks/useGlobalState";
 import useOAuth from "../Hooks/useOAuth";
 import { ToastContainer } from 'react-toastify';
+import { FiLogOut } from 'react-icons/fi';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -17,7 +18,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="flex items-center gap-10 px-16 py-5 sticky top-0 bg-white h-28 shadow-md z-10">
+            <nav className="flex items-center gap-10 px-2 2xl:px-24 xl:px-24 lg:px-24 md:px-16 py-5 sticky top-0 bg-white h-28 shadow-md z-10">
                 <div className="flex items-center gap-10 mr-auto">
                     <Link to="/">
                         <img
@@ -26,7 +27,7 @@ export default function Navbar() {
                             className="w-44 h-24 cursor-pointer"
                         />
                     </Link>
-                    <ul className={`${isOpen ? 'block' : 'hidden'} lg:flex lg:items-center gap-10 lg:justify-between w-full lg:w-auto text-xl cursor-pointer font-medium`}>
+                    <ul className={`hidden lg:flex lg:items-center gap-10 lg:justify-between w-full lg:w-auto text-xl cursor-pointer font-medium`}>
                         <li className="hover:text-primary text-secondary" onClick={user ? notifyHome : null}>
                             <NavLink to="/">Home</NavLink>
                         </li>
@@ -42,31 +43,53 @@ export default function Navbar() {
                         </li>
                     </ul>
                 </div>
-                <button
-                    className="lg:hidden block focus:outline-none"
-                    onClick={toggleMenu}
-                >
-                    <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                <div className="relative">
+                    <button className="lg:hidden block focus:outline-none"
+                        onClick={toggleMenu}
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M4 6h16M4 12h16M4 18h16"
-                        />
-                    </svg>
-                </button>
+                        <svg
+                            className="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                    </button>
+                    {
+                        isOpen && (
+                            <div className="absolute top-10 bg-white right-0 p-7 shadow-lg flex flex-col gap-5">
+                                <div className="flex gap-5">
+                                    <img src={user.data.picture} alt="Profile" srcSet="" className="w-12 h-12 rounded-full" />
+                                    <h2>{user.data.name}</h2>
+                                </div>
+                                <button className="btn-primary flex justify-center items-center gap-3" onClick={handleLogout}>
+                                    <FiLogOut /> Logout
+                                </button>
+                            </div>
+                        )
+                    }
+                </div>
                 {
-                    user && <h2>Welcome : {user.data.name}</h2>
+                    user && (
+                        <div className="lg:flex hidden justify-center items-center gap-5">
+                            <img src={user.data.picture} alt="Profile" srcSet="" className="w-12 h-12 rounded-full" />
+                            <h2>Welcome : {user.data.name}</h2>
+                            <button className="btn-primary flex justify-center items-center gap-3" onClick={handleLogout}>
+                                <FiLogOut /> Logout
+                            </button>
+                        </div>
+                    )
                 }
-                {
-                    user && <button className="btn-primary" onClick={handleLogout}>Logout</button>
-                }
+                {/* {
+                    user && <button className="btn-primary flex justify-center items-center gap-3" onClick={handleLogout}><FiLogOut /> Logout</button>
+                } */}
                 {
                     !user && (
                         <div className="hidden gap-5 text-lg ml-auto lg:flex">

@@ -175,8 +175,9 @@ export default function BMCModule() {
     }
 
     return (
-        <div className='px-24 py-10'>
-            <div className='flex my-5 gap-4 btn:flex-col flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col'>
+        <div className='px-2 2xl:px-24 xl:px-24 lg:px-24 md:px-16 py-10'>
+
+            <div className='hidden 2xl:flex xl:flex lg:flex md:hidden my-5 gap-4 btn:flex-col flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col'>
                 <div className='flex gap-5'>
                     <h3
                         className={`${(id === "Select Canvas") ? "border-b-2 border-primary" : ""} text-xl text-secondary hover:text-primary font-medium cursor-pointer hover:border-b-2 hover:border-primary`}
@@ -221,8 +222,8 @@ export default function BMCModule() {
                 </div>
             </div>
 
-            {/* <div className='flex my-5 gap-4 btn:flex-col flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col'>
-                <div className='flex gap-5 jus'>
+            <div className='flex 2xl:hidden xl:hidden lg:hidden md:flex my-5 gap-4 btn:flex-col flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col'>
+                <div className='flex gap-5 justify-center'>
                     <h3
                         className={`${(id === "Select Canvas") ? "border-b-2 border-primary" : ""} text-xl text-secondary hover:text-primary font-medium cursor-pointer hover:border-b-2 hover:border-primary`}
                         onClick={handleCreateNewForm}>
@@ -242,7 +243,7 @@ export default function BMCModule() {
                         <input type="text" name="Canvas" value={canvasName} placeholder='Type in the name of canvas' className='w-full px-5 py-3 border' required onChange={(e) => setCanvasName(e.target.value)} />
                     </div>
                 </div>
-                <div className='flex gap-5 justify-center'>
+                <div className='flex gap-5 justify-center flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row xs:flex-col'>
                     <PDFDownloadLink document={
                         <Suspense fallback={<LoadingBtn />}>
                             <BMCPdf form={form} />
@@ -266,8 +267,8 @@ export default function BMCModule() {
                         )
                     }
                 </div>
-            </div> */}
-            
+            </div>
+
             <div className='grid grid-cols-1 lg:grid-cols-5 grid-rows-4 border-2 border-gray-300'>
                 {
                     !canvasLoading ? (
@@ -333,11 +334,14 @@ export default function BMCModule() {
                     )
                 }
             </div>
-            <div className="flex mt-1 px-5">
-                <p className='w-3/4'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo suscipit tempore culpa delectus labore ea ab id nulla eos, repudiandae at, natus in! Numquam doloremque nihil ea qui, minus optio.
-                </p>
-                <div className='flex ml-auto gap-3'>
+
+            <div className="flex mt-1 justify-between items-center 2xl:flex-row xl:flex-row lg:flex-row md:flex-col-reverse flex-col-reverse gap-5">
+                <div className='2xl:w-3/4 xl:w-3/4 lg:w-3/4 md:w-3/4 w-full'>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo suscipit tempore culpa delectus labore ea ab id nulla eos, repudiandae at, natus in! Numquam doloremque nihil ea qui, minus optio.
+                    </p>
+                </div>
+                <div className='flex gap-3 mt-5'>
                     <button
                         onClick={() => dispatch({ type: "RESET_STATE" })}
                         className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
@@ -345,16 +349,19 @@ export default function BMCModule() {
                     </button>
                 </div>
             </div>
+
             <div className='flex flex-col gap-2'>
                 <h1 className='text-3xl font-bold'>Brainstorming Notes</h1>
                 <p>Write down you thought here and then move them to necessary section.</p>
                 <BrainstormingSec objName={'BrainstormingNotes'} />
             </div>
+
             {/* <div>
                 <PDFViewer height={500} width={"100%"}>
                     <BMCPdf form={form} />
                 </PDFViewer>
             </div> */}
+
             <ToastContainer
                 position="bottom-right"
                 autoClose={5000}
@@ -367,6 +374,7 @@ export default function BMCModule() {
                 pauseOnHover
                 theme="colored"
             />
+
         </div >
     )
 }
