@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.800d6ee0.css",
-    "main.js": "/static/js/main.d467c276.js",
+    "main.css": "/static/css/main.86b49c64.css",
+    "main.js": "/static/js/main.be3e8dad.js",
     "static/js/937.2f5be0ae.chunk.js": "/static/js/937.2f5be0ae.chunk.js",
     "static/js/169.13437f26.chunk.js": "/static/js/169.13437f26.chunk.js",
     "static/media/heroSec.png": "/static/media/heroSec.035a13619b95653743e0.png",
@@ -10,13 +10,13 @@
     "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/Roboto-Bold.ttf": "/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
     "index.html": "/index.html",
-    "main.800d6ee0.css.map": "/static/css/main.800d6ee0.css.map",
-    "main.d467c276.js.map": "/static/js/main.d467c276.js.map",
+    "main.86b49c64.css.map": "/static/css/main.86b49c64.css.map",
+    "main.be3e8dad.js.map": "/static/js/main.be3e8dad.js.map",
     "937.2f5be0ae.chunk.js.map": "/static/js/937.2f5be0ae.chunk.js.map",
     "169.13437f26.chunk.js.map": "/static/js/169.13437f26.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.800d6ee0.css",
-    "static/js/main.d467c276.js"
+    "static/css/main.86b49c64.css",
+    "static/js/main.be3e8dad.js"
   ]
 }

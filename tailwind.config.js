@@ -11,6 +11,7 @@ module.exports = {
       'md': "768px",
       'lg': "992px",
       "btn": "1100px",
+      "footer-img": "1430px",
       'xl': "1372px",
       '2xl': "1820px",
     },
