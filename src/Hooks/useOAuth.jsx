@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useGlobalState } from "./useGlobalState";
 import { toast } from 'react-toastify';
+import { redirect } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function useLogin() {
     const [signupUser, setSignupUser] = useState(false);
@@ -39,7 +41,9 @@ export default function useLogin() {
         googleLogout()
         Cookies.remove("sodIdToken");
         dispatch({ type: "LOGOUT" });
-        window.location.reload(false);
+        // navigate('/')
+        redirect('/')
+        window.location.reload(true);
     }
 
     // Login
