@@ -117,7 +117,7 @@ export default function useLogin() {
                     progress: true,
                     theme: "colored",
                 });
-                console.log(err.response.data.message);
+                console.log(err);
             }
         }
 
