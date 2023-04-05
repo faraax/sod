@@ -43,7 +43,8 @@ export default function useLogin() {
         dispatch({ type: "LOGOUT" });
         // navigate('/')
         redirect('/')
-        window.location.reload(true);
+        window.location.href = '/'
+        // window.location.reload(true);
     }
 
     // Login
