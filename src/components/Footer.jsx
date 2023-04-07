@@ -61,7 +61,7 @@ export default function Footer() {
                                 <FiInstagram />
                             </span>
                         </a>
-                        <a href="https://www.instagram.com/steveondigital/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://steveondigital.com/" target="_blank" rel="noopener noreferrer">
                             <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
                                 <TfiWorld />
                             </span>
@@ -112,7 +112,7 @@ export default function Footer() {
                                 <FiInstagram />
                             </span>
                         </a>
-                        <a href="https://www.instagram.com/steveondigital/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://steveondigital.com/" target="_blank" rel="noopener noreferrer">
                             <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
                                 <TfiWorld />
                             </span>
