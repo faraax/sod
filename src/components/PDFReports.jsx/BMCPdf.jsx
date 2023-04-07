@@ -94,10 +94,27 @@ const styles = StyleSheet.create({
         fontWeight: "normal",
         // width: 230,
         // overflow: "hidden"
+    },
+    container: {
+        // backgroundColor: "red",
+        width: '100%',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        height: '80px'
+    },
+    name: {
+        marginRight: 20,
+        marginTop: 20
+    },
+    date: {
+        marginRight: 20,
+        // marginTop: 20
     }
 });
 
-export default function BMCPdf({ form }) {
+export default function BMCPdf({ form, canvas_name }) {
+    const date = new Date().toLocaleDateString()
 
     const handleTag = (list) => {
         let ele = { bold: "", italic: "", link: "", src: null, text: "" }
@@ -553,12 +570,26 @@ export default function BMCPdf({ form }) {
             </View>
         </View>
     ))
+
     return (
         <Document title='PDF_CHECK'>
             <Page size="A3" orientation='landscape' style={styles.page}>
                 <View style={styles.invoiceDateContainer}>
                     <Text style={styles.label}>Business Model Canvas</Text>
+                    {/* <Text style={styles.name}>{canvas_name}</Text> */}
+                    {/* <View>
+                        <Text style={styles.date}>{date}</Text>
+                    </View> */}
                 </View >
+                {/* <View style={styles.container}>
+                    <View style={styles.invoiceDateContainer}>
+                        <Text style={styles.label}>Business Model Canvas</Text>
+                    </View >
+                    <View>
+                        <Text style={styles.name}>{canvas_name}</Text>
+                        <Text style={styles.date}>{date}</Text>
+                    </View>
+                </View> */}
                 {data}
             </Page>
         </Document>

@@ -15,7 +15,7 @@ export default function ToolsSec() {
                 </div>
             </div>
             <div className='2xl:col-span-9 xl:col-span-9 lg:col-span-9 col-span-12'>
-                <div className='p-5 flex flex-col gap-1'>
+                <div className='p-5 flex flex-col justify-center items-center gap-1'>
                     <h1 className='text-3xl font-bold text-primary'>Here are your tools:</h1>
                     {/* <p className='font-semibold text-secondary text-xl'>Module Features Here:</p> */}
                     <ul className='list-disc text-secondary text-lg'>

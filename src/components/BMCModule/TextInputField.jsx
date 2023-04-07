@@ -112,11 +112,26 @@ export default function TextInputField({ setInpActive, objName }) {
 
     const handleFontLink = (fontLink) => {
         const links = prompt('Inset Link');
+
+        // Define a regular expression pattern for a valid URL
+        const linksPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+
+        // Test if the user's input matches the URL pattern
+        if (!linksPattern.test(links)) {
+            alert("Invalid URL. Please enter a valid URL.");
+        }
+
         document.execCommand(fontLink, false, links);
     };
 
     const handleFontUnLink = (fontUnLink) => {
         document.execCommand(fontUnLink, false, '');
+    };
+
+    const handlePaste = (e) => {
+        e.preventDefault();
+        var text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertHTML", false, text);
     };
 
     return (
@@ -129,6 +144,7 @@ export default function TextInputField({ setInpActive, objName }) {
                     contentEditable={true}
                     onClick={() => setInpActive(true)}
                     onInput={handleInput}
+                    onPaste={handlePaste}
                     className={`input_text_editor px-5 py-1 focus:border-none bg-gray-50 break-all w-full active:border-none outline-none`}
                 />
             </div>

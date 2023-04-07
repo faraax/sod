@@ -8,6 +8,7 @@ export const GlobalState = createContext();
 const initialState = {
     user: null,
     authIsReady: false,
+    canvas_name: null,
     form:
     {
         KeyPartnerships: {
@@ -53,8 +54,8 @@ export const stateReducer = (state, action) => {
             return { ...state, user: action.payload, authIsReady: true }
         case "UPDATEFORM":
             return { ...state, form: action.payload }
-        // case "UPDATEFORMDB":
-        //     return { form: action.payload }
+        case "UPDATECANVASNAME":
+            return { ...state, canvas_name: action.payload }
         case "RESET_STATE":
             return { ...state, form: initialState.form };
         default:

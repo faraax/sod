@@ -17,11 +17,11 @@ export default function useLogin() {
 
     const notify = () => toast.warn("Please Login First", {
         position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 1000,
+        // hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+        // pauseOnHover: true,
+        // draggable: true,
         progress: true,
         theme: "colored",
     })
@@ -29,10 +29,10 @@ export default function useLogin() {
     const notifyHome = () => toast.info("Logout to visit Home Page", {
         position: "bottom-right",
         autoClose: 5000,
-        hideProgressBar: false,
+        // hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+        // pauseOnHover: true,
+        // draggable: true,
         progress: true,
         theme: "colored",
     })
@@ -102,11 +102,11 @@ export default function useLogin() {
                 // console.log("Resp=>", response.data);
                 toast.success(`Welcome : ${user.data.name}`, {
                     position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
+                    autoClose: 1000,
+                    // hideProgressBar: false,
                     closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
+                    // pauseOnHover: true,
+                    // draggable: true,
                     progress: true,
                     theme: "colored",
                 });
@@ -114,11 +114,11 @@ export default function useLogin() {
                 // Cookies.remove("sodIdToken");
                 toast.error(err.response.data.message, {
                     position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
+                    autoClose: 1000,
+                    // hideProgressBar: false,
                     closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
+                    // pauseOnHover: true,
+                    // draggable: true,
                     progress: true,
                     theme: "colored",
                 });
@@ -144,12 +144,12 @@ export default function useLogin() {
                 // console.log("Resp =>", response.data);
                 toast.success(`Welcome : ${response.data.message} Please Login`, {
                     position: "bottom-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
+                    autoClose: 1000,
+                    // hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
-                    draggable: true,
-                    progress: true,
+                    // draggable: true,
+                    // progress: true,
                     theme: "colored",
                 });
             } catch (err) {
@@ -157,11 +157,11 @@ export default function useLogin() {
                 if (err.response.data.message) {
                     toast.error(err.response.data.message, {
                         position: "bottom-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
+                        autoClose: 1000,
+                        // hideProgressBar: false,
                         closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
+                        // pauseOnHover: true,
+                        // draggable: true,
                         progress: true,
                         theme: "colored",
                     });

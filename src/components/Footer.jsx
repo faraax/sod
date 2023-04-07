@@ -1,4 +1,5 @@
-import { FiFacebook, FiTwitter, FiLinkedin, FiYoutube, FiPhone } from 'react-icons/fi'
+import { FiFacebook, FiTwitter, FiLinkedin, FiYoutube, FiInstagram } from 'react-icons/fi'
+import { TfiWorld } from 'react-icons/tfi'
 import useOAuth from '../Hooks/useOAuth'
 
 export default function Footer() {
@@ -22,33 +23,48 @@ export default function Footer() {
                             src={'../../assets/FooterLogo.png'}
                             alt="Steve On Digital"
                             className="w-60 h-28 2xl:w-80 2xl:h-48 xl:w-80 xl:h-48 lg:w-80 lg:h-48 md:w-60 md:h-28" />
-                        <p className='text-base font-bold text-center text-secondary'>
+                        <p className='text-base font-bold text-center text-secondary mr-7'>
                             Business Transformation Digitally
                         </p>
                     </div>
                 </div>
                 <div className='col-span-3 flex items-center justify-center gap-5 flex-col 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden relative'>
                     <div className='flex gap-5 text-3xl text-secondary'>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiFacebook />
-                        </span>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiTwitter />
-                        </span>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiLinkedin />
-                        </span>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiYoutube />
-                        </span>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiPhone />
-                        </span>
+                        <a href="https://www.facebook.com/steveondigital/" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiFacebook />
+                            </span>
+                        </a>
+                        <a href="https://twitter.com/SteveOnDigital1" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiTwitter />
+                            </span>
+                        </a>
+                        <a href="https://www.linkedin.com/company/steveondigital-digital-transformation-simplified/" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiLinkedin />
+                            </span>
+                        </a>
+                        <a href="https://www.youtube.com/@steveondigital" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiYoutube />
+                            </span>
+                        </a>
+                        <a href="https://www.instagram.com/steveondigital/" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiInstagram />
+                            </span>
+                        </a>
+                        <a href="https://www.instagram.com/steveondigital/" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <TfiWorld />
+                            </span>
+                        </a>
                     </div>
                     <img
                         src={'../../assets/Steve - Black Shirt.png'}
                         alt="Steve On Digital"
-                        className="h-72 absolute right-0 footer-img:-right-10 btn:-right-24 lg:-right-20"
+                        className="h-64 absolute right-0 footer-img:-right-10 btn:-right-24 lg:-right-20"
                     />
                     <div className='flex flex-col'>
                         <h2 className='text-end text-2xl font-bold'>Steve Johnston</h2>
@@ -65,31 +81,45 @@ export default function Footer() {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                     <div className='flex gap-5 text-3xl text-secondary'>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiFacebook />
-                        </span>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiTwitter />
-                        </span>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiLinkedin />
-                        </span>
-                        <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiYoutube />
-                        </span>
-                        <span title='0XXXXXXXXX'
-                            className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
-                            <FiPhone />
-                        </span>
+                        <a href="https://www.facebook.com/steveondigital/" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiFacebook />
+                            </span>
+                        </a>
+                        <a href="https://twitter.com/SteveOnDigital1" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiTwitter />
+                            </span>
+                        </a>
+                        <a href="https://www.linkedin.com/company/steveondigital-digital-transformation-simplified/" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiLinkedin />
+                            </span>
+                        </a>
+                        <a href="https://www.youtube.com/@steveondigital" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiYoutube />
+                            </span>
+                        </a>
+                        <a href="https://www.instagram.com/steveondigital/" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <FiInstagram />
+                            </span>
+                        </a>
+                        <a href="https://www.instagram.com/steveondigital/" target="_blank" rel="noopener noreferrer">
+                            <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
+                                <TfiWorld />
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div className='flex justify-between items-center px-24 py-5 flex-row 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col xs:flex-col'>
-                <div className='flex gap-5 text-xl items-center justify-center'>
-                    <p className='text-lg font-medium text-white'>
-                        © 2023 StemJee Inc. All Rights Reserved.
-                    </p>
-                </div>
+            <div className='flex justify-between items-center px-16 py-5 flex-row 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col xs:flex-col'>
+                {/* <div className='flex gap-5 text-xl items-center justify-center'> */}
+                <p className='text-lg font-medium text-white'>
+                    © 2023 StemJee Inc. All Rights Reserved.
+                </p>
+                {/* </div> */}
                 {/* <div className="flex gap-5 text-xl items-center justify-center">
                     <p className='text-lg font-medium text-white'>Privacy Policy</p>
                     <p className='text-lg font-medium text-white'>Terms of Service</p>

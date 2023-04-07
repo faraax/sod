@@ -98,6 +98,13 @@ export default function EditInput({ handleEdit, index, setNewInpValue, valueToEd
     const handleFontUnLink = (fontUnLink) => {
         document.execCommand(fontUnLink, false, '');
     };
+
+    const handlePaste = (e) => {
+        e.preventDefault();
+        var text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertHTML", false, text);
+    };
+
     return (
         <div ref={containerRef}>
             <div className='flex'>
@@ -108,6 +115,7 @@ export default function EditInput({ handleEdit, index, setNewInpValue, valueToEd
                     contentEditable={true}
                     // onClick={() => setInpActive(true)}
                     onInput={handleInput}
+                    onPaste={handlePaste}
                     className={`input_text_editor px-5 py-1 focus:border-none bg-gray-100 break-all w-full active:border-none outline-none`}
                     dangerouslySetInnerHTML={{ __html: valueToEdit }}
                 />
