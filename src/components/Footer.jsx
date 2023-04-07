@@ -1,21 +1,27 @@
 import { FiFacebook, FiTwitter, FiLinkedin, FiYoutube, FiInstagram } from 'react-icons/fi'
 import { TfiWorld } from 'react-icons/tfi'
 import useOAuth from '../Hooks/useOAuth'
+import { useGlobalState } from '../Hooks/useGlobalState';
 
 export default function Footer() {
     const { handleOAuth, handleSignup } = useOAuth();
+    const { user } = useGlobalState();
     return (
         <footer className='bg-primary overflow-hidden'>
-            <div className='flex gap-4 2xl:flex-row xl:flex-row lg:flex-row flex-col justify-between items-center 2xl:px-20 2xl:py-5 xl:px-20 xl:py-5 lg:px-20 lg:py-5 md:px-20 md:py-5 px-0 py-5'>
-                <h1 className='2xl:text-6xl xl:text-6xl lg:text-6xl md:text-6xl text-4xl font-medium text-white text-center'>
-                    Start YOUR transformation now!
-                    {/* <span className='font-bold'> Get Started Now!</span> */}
-                </h1>
-                <div className="flex gap-5 text-xl items-center justify-center">
-                    <button className="btn-primary bg-white text-primary hover:text-secondary hover:bg-white text-center font-bold" onClick={handleSignup}>Signup</button>
-                    <button className="btn-primary bg-white text-primary hover:text-secondary hover:bg-white text-center font-bold" onClick={handleOAuth}>Login</button>
-                </div>
-            </div>
+            {
+                !user && (
+                    <div className='flex gap-4 2xl:flex-row xl:flex-row lg:flex-row flex-col justify-between items-center 2xl:px-20 2xl:py-5 xl:px-20 xl:py-5 lg:px-20 lg:py-5 md:px-20 md:py-5 px-0 py-5'>
+                        <h1 className='2xl:text-6xl xl:text-6xl lg:text-6xl md:text-6xl text-4xl font-medium text-white text-center'>
+                            Start YOUR transformation now!
+                            {/* <span className='font-bold'> Get Started Now!</span> */}
+                        </h1>
+                        <div className="flex gap-5 text-xl items-center justify-center">
+                            <button className="btn-primary bg-white text-primary hover:text-secondary hover:bg-white text-center font-bold" onClick={handleSignup}>Signup</button>
+                            <button className="btn-primary bg-white text-primary hover:text-secondary hover:bg-white text-center font-bold" onClick={handleOAuth}>Login</button>
+                        </div>
+                    </div>
+                )
+            }
             <div className='grid grid-cols-1 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-6 md:grid-cols-1 bg-[#F2F4F8] min-h-96 px-16 py-5'>
                 <div className='gap-y-2 col-span-3 flex 2xl:flex xl:flex lg:flex md:hidden sm:hidden xs:hidden'>
                     <div className='flex items-center justify-center flex-col'>
