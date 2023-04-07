@@ -5,7 +5,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { useGlobalState } from "../Hooks/useGlobalState";
 import EditableDiv from '../components/BMCModule/EditableDiv';
 import BrainstormingSec from '../components/BMCModule/BrainstormingSec';
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import BMCPdf from '../components/PDFReports.jsx/BMCPdf';
 import Percentage from '../components/BMCModule/Percentage';
 import Cookies from 'js-cookie';
@@ -388,11 +388,11 @@ export default function BMCModule() {
                     <BrainstormingSec objName={'BrainstormingNotes'} />
                 </div>
 
-                {/* <div>
+                <div>
                     <PDFViewer height={500} width={"100%"}>
                         <BMCPdf form={form} canvas_name={canvas_name} />
                     </PDFViewer>
-                </div> */}
+                </div>
 
                 <ToastContainer
                     position="bottom-right"

@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import { useGlobalState } from "./Hooks/useGlobalState";
 import Home from "./pages/Home";
 // import Footer from "./components/Footer";
-// import PdfViewer from "./pages/PdfViewer
+// import PdfViewer from "./pages/PdfViewer";
 
 const BMCModule = React.lazy(() => import("./pages/BMCModule"))
 
@@ -25,6 +25,7 @@ function App() {
                   </Suspense>
                 ) : <Navigate to={'/'} />
               } />
+              {/* <Route path="/pdf" element={<PdfViewer />} /> */}
               <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>

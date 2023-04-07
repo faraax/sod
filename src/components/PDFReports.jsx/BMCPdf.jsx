@@ -18,13 +18,13 @@ Font.register({
 // Create styles
 const styles = StyleSheet.create({
     page: {
-        flexDirection: 'row',
+        // flexDirection: 'column',
         backgroundColor: '#fff',
         // fontFamily: "Roboto"
     },
     invoiceDateContainer: {
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         margin: 20
     },
     label: {
@@ -34,9 +34,10 @@ const styles = StyleSheet.create({
     tableContainer: {
         flexDirection: "row",
         flexWrap: 'wrap',
-        marginTop: 80,
+        // marginTop: 80,
+        marginLeft: 30,
         marginBottom: 20,
-        marginLeft: -525,
+        // marginLeft: -525,
         borderWidth: 1,
         borderColor: '#333',
         width: 1150
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#333',
         width: 574,
-        height: 240,
+        height: 200,
         borderLeft: "none",
         borderTop: "none",
         borderBottom: "none"
@@ -128,6 +129,7 @@ export default function BMCPdf({ form, canvas_name }) {
             ele.link = true
             ele.src = element.getAttribute('href')
             ele.text = element.textContent
+            console.log(element.textContent);
         }
 
         for (let i = 0; i < bold.length; i++) {
@@ -238,7 +240,9 @@ export default function BMCPdf({ form, canvas_name }) {
                                 </Link>
                                 :
                                 <Text
-                                    style={classStyle.list} key={index} >{ele.text}</Text>
+                                    style={classStyle.list} key={index} >
+                                    {ele.text}
+                                </Text>
                         })
                     }
                 </View>
@@ -576,20 +580,11 @@ export default function BMCPdf({ form, canvas_name }) {
             <Page size="A3" orientation='landscape' style={styles.page}>
                 <View style={styles.invoiceDateContainer}>
                     <Text style={styles.label}>Business Model Canvas</Text>
-                    {/* <Text style={styles.name}>{canvas_name}</Text> */}
-                    {/* <View>
-                        <Text style={styles.date}>{date}</Text>
-                    </View> */}
-                </View >
-                {/* <View style={styles.container}>
-                    <View style={styles.invoiceDateContainer}>
-                        <Text style={styles.label}>Business Model Canvas</Text>
-                    </View >
                     <View>
-                        <Text style={styles.name}>{canvas_name}</Text>
-                        <Text style={styles.date}>{date}</Text>
+                        <Text style={styles.name}>Canvas Name: {canvas_name}</Text>
+                        <Text style={styles.date}>Date: {date}</Text>
                     </View>
-                </View> */}
+                </View >
                 {data}
             </Page>
         </Document>
