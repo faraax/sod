@@ -388,11 +388,11 @@ export default function BMCModule() {
                     <BrainstormingSec objName={'BrainstormingNotes'} />
                 </div>
 
-                <div>
+                {/* <div>
                     <PDFViewer height={500} width={"100%"}>
                         <BMCPdf form={form} canvas_name={canvas_name} />
                     </PDFViewer>
-                </div>
+                </div> */}
 
                 <ToastContainer
                     position="bottom-right"
