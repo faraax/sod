@@ -93,7 +93,7 @@ export default function EditableDiv({ list, title, objName }) {
                     {
                         (form[objName].list !== "" || form[objName].list !== null) && (
                             form[objName].list?.map((value, index) => {
-                                value = value.replace(/\n/g, "");
+                                // value = value.replace(/\n/g, "");
                                 return (
                                     <div
                                         draggable
@@ -104,7 +104,8 @@ export default function EditableDiv({ list, title, objName }) {
                                         key={index}
                                     >
                                         <List
-                                            value={value}
+                                            value={value.replace(/\n/g, "")}
+                                            delVa={value}
                                             handleEdit={handleEdit}
                                             index={index}
                                             objName={objName}

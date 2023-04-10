@@ -5,10 +5,11 @@ import EditInput from './EditInput'
 import { useGlobalState } from '../../Hooks/useGlobalState'
 
 
-export default function List({ value, handleEdit, index, objName }) {
+export default function List({ value, handleEdit, index, objName, delVa }) {
     const [newInpValue, setNewInpValue] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const { dispatch, form } = useGlobalState();
+    // const [vals,] = useState(value.replace("\n", ""))
 
     const handleDelete = (value) => {
         const updatedList = form[objName].list.filter((partner) => partner !== value);
@@ -42,7 +43,7 @@ export default function List({ value, handleEdit, index, objName }) {
                                                 Edit
                                             </li>
                                             <li
-                                                onClick={() => handleDelete(value)}
+                                                onClick={() => handleDelete(delVa)}
                                                 className='flex items-center gap-3 hover:bg-gray-200 hover:text-primary p-1 w-28 text-sm'>
                                                 <RiDeleteBinLine />
                                                 Delete

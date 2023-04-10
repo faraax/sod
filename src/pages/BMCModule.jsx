@@ -5,7 +5,8 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { useGlobalState } from "../Hooks/useGlobalState";
 import EditableDiv from '../components/BMCModule/EditableDiv';
 import BrainstormingSec from '../components/BMCModule/BrainstormingSec';
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+// import { PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import BMCPdf from '../components/PDFReports.jsx/BMCPdf';
 import Percentage from '../components/BMCModule/Percentage';
 import Cookies from 'js-cookie';
@@ -15,6 +16,7 @@ import Footer from '../components/Footer';
 
 export default function BMCModule() {
     const { form, dispatch, user, canvas_name } = useGlobalState();
+    // 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 (Access token of github)
     const [confirm, setConfirm] = useState(false);
     // const [page, setPage] = useState(1);
     // const [length, setLength] = useState(null);
