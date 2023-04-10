@@ -124,28 +124,29 @@ export default function BMCPdf({ form, canvas_name }) {
         let bold = htmlDoc.getElementsByTagName('b');
         let italic = htmlDoc.getElementsByTagName('i');
         let link = htmlDoc.getElementsByTagName('a');
+
         for (let i = 0; i < link.length; i++) {
             const element = link[i];
             ele.link = true
             ele.src = element.getAttribute('href')
-            ele.text = element.textContent
-            console.log(element.textContent);
+            ele.text = element.innerText.replace("\n","")
         }
 
         for (let i = 0; i < bold.length; i++) {
             const element = bold[i];
             ele.bold = true
-            ele.text = element.textContent
+            ele.text = element.textContent.replace("\n","")
         }
 
         for (let i = 0; i < italic.length; i++) {
             const element = italic[i];
             ele.italic = true
-            ele.text = element.textContent
+            ele.text = element.textContent.replace("\n","")
         }
         if ((bold.length < 1) && (italic.length < 1) && (link.length < 1)) {
             ele.text += list;
         }
+        // console.log(ele);
         return ele
     }
 

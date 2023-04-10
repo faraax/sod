@@ -113,14 +113,6 @@ export default function TextInputField({ setInpActive, objName }) {
     const handleFontLink = (fontLink) => {
         const links = prompt('Inset Link');
 
-        // Define a regular expression pattern for a valid URL
-        const linksPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-
-        // Test if the user's input matches the URL pattern
-        if (!linksPattern.test(links)) {
-            alert("Invalid URL. Please enter a valid URL.");
-        }
-
         document.execCommand(fontLink, false, links);
     };
 
