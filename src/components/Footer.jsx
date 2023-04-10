@@ -74,7 +74,7 @@ export default function Footer() {
                     />
                     <div className='flex flex-col'>
                         <h2 className='text-end text-2xl font-bold'>Steve Johnston</h2>
-                        <p className='text-lg'>Founder of SteveOnDigital.com</p>
+                        <p className='text-lg'>Founder of <a className='underline hover:text-blue-600' href="https://steveondigital.com/" target="_blank" rel="noopener noreferrer">SteveOnDigital.com</a></p>
                     </div>
                 </div>
                 <div className='hidden 2xl:hidden xl:hidden lg:hidden md:flex sm:flex xs:flex items-center justify-center flex-col gap-5'>
