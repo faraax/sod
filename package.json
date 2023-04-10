@@ -1,6 +1,7 @@
 {
   "name": "sod",
   "version": "0.1.0",
+  "homepage": "https://toolbox.steveondigital.com/",
   "private": true,
   "dependencies": {
     "@react-oauth/google": "^0.8.0",
