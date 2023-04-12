@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Font, Link } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Font, Link, Image } from '@react-pdf/renderer';
 import RobotoRegular from '../../Utils/fonts/Roboto-Regular.ttf'
 import RobotoBold from '../../Utils/fonts/Roboto-Bold.ttf'
 import RobotoItalic from '../../Utils/fonts/Roboto-Italic.ttf'
@@ -21,14 +21,17 @@ const styles = StyleSheet.create({
         // flexDirection: 'column',
         backgroundColor: '#fff',
         // fontFamily: "Roboto"
+        position: "relative"
     },
     invoiceDateContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 20
+        marginHorizontal: 20,
+        marginTop: 20
     },
     label: {
-        fontSize: 48,
+        fontSize: 32,
+        marginLeft: 10
         // fontFamily: "Roboto"
     },
     tableContainer: {
@@ -62,6 +65,18 @@ const styles = StyleSheet.create({
         borderLeft: "none",
         borderTop: "none",
         borderRight: "none"
+    },
+    firstRowInnerNoBd: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        borderWidth: 1,
+        borderColor: '#333',
+        width: 230,
+        height: 250,
+        borderLeft: "none",
+        borderTop: "none",
+        borderRight: "none",
+        borderBottom: "none"
     },
     firstRowLastCol: {
         flexDirection: 'column',
@@ -97,7 +112,6 @@ const styles = StyleSheet.create({
         // overflow: "hidden"
     },
     container: {
-        // backgroundColor: "red",
         width: '100%',
         display: "flex",
         flexDirection: "row",
@@ -111,6 +125,29 @@ const styles = StyleSheet.create({
     date: {
         marginRight: 20,
         // marginTop: 20
+    },
+    footer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginHorizontal: 20,
+        // backgroundColor: "red"
+    },
+    link: {
+        flexDirection: "row",
+        fontSize: 12,
+        // marginHorizontal: 10,
+        // width: 230,
+        fontFamily: "Roboto-Regular"
+    },
+    waterMark: {
+        position: "absolute",
+        top: '50%',
+        left: "45%",
+        height: 90,
+        width: 150,
+        opacity: 0.4,
     }
 });
 
@@ -129,19 +166,19 @@ export default function BMCPdf({ form, canvas_name }) {
             const element = link[i];
             ele.link = true
             ele.src = element.getAttribute('href')
-            ele.text = element.innerText.replace("\n","")
+            ele.text = element.innerText.replace("\n", "")
         }
 
         for (let i = 0; i < bold.length; i++) {
             const element = bold[i];
             ele.bold = true
-            ele.text = element.textContent.replace("\n","")
+            ele.text = element.textContent.replace("\n", "")
         }
 
         for (let i = 0; i < italic.length; i++) {
             const element = italic[i];
             ele.italic = true
-            ele.text = element.textContent.replace("\n","")
+            ele.text = element.textContent.replace("\n", "")
         }
         if ((bold.length < 1) && (italic.length < 1) && (link.length < 1)) {
             ele.text += list;
@@ -247,7 +284,7 @@ export default function BMCPdf({ form, canvas_name }) {
                         })
                     }
                 </View>
-                <View style={styles.firstRowInner}>
+                <View style={styles.firstRowInnerNoBd}>
                     <Text style={styles.title}>Key Resources</Text>
                     {
                         list.KeyResources.list.map((list, index) => {
@@ -343,7 +380,7 @@ export default function BMCPdf({ form, canvas_name }) {
             </View>
             <View style={styles.firstRow}>
                 <View style={styles.firstRowInner}>
-                    <Text style={styles.title}> Customer Relationships</Text>
+                    <Text style={styles.title}>Customer Relationships</Text>
                     {
                         list.CustomerRelationships.list.map((list, index) => {
                             const ele = handleTag(list)
@@ -388,8 +425,8 @@ export default function BMCPdf({ form, canvas_name }) {
                         })
                     }
                 </View>
-                <View style={styles.firstRowInner}>
-                    <Text style={styles.title}> Channels</Text>
+                <View style={styles.firstRowInnerNoBd}>
+                    <Text style={styles.title}>Channels</Text>
                     {
                         list.Channels.list.map((list, index) => {
                             const ele = handleTag(list)
@@ -581,12 +618,45 @@ export default function BMCPdf({ form, canvas_name }) {
             <Page size="A3" orientation='landscape' style={styles.page}>
                 <View style={styles.invoiceDateContainer}>
                     <Text style={styles.label}>Business Model Canvas</Text>
-                    <View>
+                    <View style={{ justifyContent: "center", alignItems: "center", marginLeft: 20 }}>
                         <Text style={styles.name}>Canvas Name: {canvas_name}</Text>
                         <Text style={styles.date}>Date: {date}</Text>
                     </View>
                 </View >
                 {data}
+                <Image style={styles.waterMark} src={'../../assets/watermark.png'} />
+                <View style={styles.footer}>
+                    <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center", marginLeft: 20 }}>
+                        <Image style={{ width: 26, height: 26 }} src={'../../assets/internet.png'} />
+                        <Link
+                            src={'steveondigital.com'}
+                        >
+                            SteveOnDigital.com
+                        </Link>
+                    </View>
+                    <View style={{ flexDirection: "row", gap: 10, justifyContent: "center", alignItems: "center" }}>
+                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                            <Image style={{ width: 20, height: 20 }} src={'../../assets/youtube.png'} />
+                            <Link src={'https://www.youtube.com/@steveondigital'} style={{ fontSize: 14 }}>/@steveondigital</Link>
+                        </View>
+                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                            <Image style={{ width: 20, height: 20 }} src={'../../assets/facebook.png'} />
+                            <Link src={'https://www.facebook.com/steveondigital/'} style={{ fontSize: 14 }}>/steveondigital</Link>
+                        </View>
+                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                            <Image style={{ width: 20, height: 20 }} src={'../../assets/twitter.png'} />
+                            <Link src={'https://twitter.com/SteveOnDigital1'} style={{ fontSize: 14 }}>/SteveOnDigital1</Link>
+                        </View>
+                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                            <Image style={{ width: 20, height: 20 }} src={'../../assets/instagram.png'} />
+                            <Link src={'https://www.instagram.com/steveondigital/'} style={{ fontSize: 14 }}>/steveondigital</Link>
+                        </View>
+                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                            <Image style={{ width: 20, height: 20 }} src={'../../assets/linkedin.png'} />
+                            <Link src={'https://www.linkedin.com/company/steveondigital-digital-transformation-simplified/'} style={{ fontSize: 14 }}>/company/steveondigital-digital-transformation-simplified</Link>
+                        </View>
+                    </View>
+                </View>
             </Page>
         </Document>
     )

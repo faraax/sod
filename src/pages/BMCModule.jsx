@@ -5,7 +5,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { useGlobalState } from "../Hooks/useGlobalState";
 import EditableDiv from '../components/BMCModule/EditableDiv';
 import BrainstormingSec from '../components/BMCModule/BrainstormingSec';
-// import { PDFViewer } from '@react-pdf/renderer';
+import { PDFViewer } from '@react-pdf/renderer';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import BMCPdf from '../components/PDFReports.jsx/BMCPdf';
 import Percentage from '../components/BMCModule/Percentage';
@@ -190,7 +190,7 @@ export default function BMCModule() {
                 <div className='hidden 2xl:flex xl:flex lg:flex md:hidden my-5 gap-4 btn:flex-col flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col'>
                     <div className='flex gap-5 items-center'>
                         <h3
-                            className={`${(id === "Select Canvas") ? "border-b-2 border-primary text-primary" : "text-secondary"} text-xl hover:text-primary font-medium cursor-pointer hover:border-b-2 hover:border-primary`}
+                            className={`${(id === "Select Canvas") ? "border-b-2 border-primary text-primary" : "border text-secondary"} rounded-lg p-2 text-xl hover:text-primary font-medium cursor-pointer hover:border-b-2 hover:border-primary`}
                             onClick={handleCreateNewForm}>
                             Create BMC
                         </h3>
