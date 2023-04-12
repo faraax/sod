@@ -629,7 +629,7 @@ export default function BMCPdf({ form, canvas_name }) {
                     <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center", marginLeft: 20 }}>
                         <Image style={{ width: 26, height: 26 }} src={'../../assets/internet.png'} />
                         <Link
-                            src={'steveondigital.com'}
+                            src={'https://steveondigital.com/'}
                         >
                             SteveOnDigital.com
                         </Link>

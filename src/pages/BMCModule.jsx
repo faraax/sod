@@ -5,7 +5,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { useGlobalState } from "../Hooks/useGlobalState";
 import EditableDiv from '../components/BMCModule/EditableDiv';
 import BrainstormingSec from '../components/BMCModule/BrainstormingSec';
-import { PDFViewer } from '@react-pdf/renderer';
+// import { PDFViewer } from '@react-pdf/renderer';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import BMCPdf from '../components/PDFReports.jsx/BMCPdf';
 import Percentage from '../components/BMCModule/Percentage';
