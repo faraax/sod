@@ -60,6 +60,7 @@ export default function EditableDiv({ list, title, objName }) {
         <>
             <div className='flex flex-col' >
                 <div className='flex items-center px-3 py-3'>
+                    {/* <div className='flex items-center justify-between'> */}
                     <h2 className='text-lg font-medium'>{title}</h2>
                     {
                         (form[objName].list.length === 0) && (
@@ -79,6 +80,7 @@ export default function EditableDiv({ list, title, objName }) {
                             </>
                         )
                     }
+                    {/* </div> */}
                     {
                         (form[objName].list.length > 0 || inpActive) ? (
                             <div

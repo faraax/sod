@@ -188,11 +188,23 @@ export default function BMCModule() {
             <div className='px-2 2xl:px-24 xl:px-24 lg:px-24 md:px-16 py-10'>
                 <div className='hidden 2xl:flex xl:flex lg:flex md:hidden my-5 gap-4 btn:flex-col flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col'>
                     <div className='flex gap-5 items-center'>
-                        <h3
-                            className={`${(id === "Select Canvas") ? "border-b-2 border-primary text-primary" : "border text-secondary"} rounded-lg p-2 text-xl hover:text-primary font-medium cursor-pointer hover:border-b-2 hover:border-primary`}
-                            onClick={handleCreateNewForm}>
-                            Create BMC
-                        </h3>
+                        {
+                            (canvas.length === 3) ? (
+                                <button
+                                    title='Max Limit Reached'
+                                    className={`${(id === "Select Canvas") ? "border-primary" : ""}  opacity-50 cursor-not-allowed bg-primary rounded-lg border-2 px-5 py-2 text-xl text-white font-medium  hover:border-b-2 hover:border-primary`}
+                                // onClick={handleCreateNewForm}
+                                >
+                                    Create BMC
+                                </button>
+                            ) : (
+                                <button
+                                    className={`${(id === "Select Canvas") ? "border-primary" : ""} hover:bg-opacity-80 border-2 text-white bg-primary px-5 py-2 rounded-lg text-xl  font-medium cursor-pointer hover:border-b-2 hover:border-primary`}
+                                    onClick={handleCreateNewForm}>
+                                    Create BMC
+                                </button>
+                            )
+                        }
                         <select name="canvas" className='w-52 border px-5 py-2' value={id} onChange={(e) => setId(e.target.value)}>
                             <option selected disabled value={'Select Canvas'}>Select Canvas</option>
                             {
@@ -257,11 +269,23 @@ export default function BMCModule() {
 
                 <div className='flex 2xl:hidden xl:hidden lg:hidden md:flex my-5 gap-4 btn:flex-col flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col'>
                     <div className='flex gap-5 justify-center'>
-                        <h3
-                            className={`${(id === "Select Canvas") ? "border-b-2 border-primary" : ""} text-xl text-secondary hover:text-primary font-medium cursor-pointer hover:border-b-2 hover:border-primary`}
-                            onClick={handleCreateNewForm}>
-                            Create BMC
-                        </h3>
+                        {
+                            (canvas.length === 3) ? (
+                                <button
+                                    title='Max Limit Reached'
+                                    className={`${(id === "Select Canvas") ? "border-primary" : ""}  opacity-50 cursor-not-allowed bg-primary rounded-lg border-2 px-5 py-2 text-xl text-white font-medium  hover:border-b-2 hover:border-primary`}
+                                // onClick={handleCreateNewForm}
+                                >
+                                    Create BMC
+                                </button>
+                            ) : (
+                                <button
+                                    className={`${(id === "Select Canvas") ? "border-primary" : ""} hover:bg-opacity-80 border-2 text-white bg-primary px-5 py-2 rounded-lg text-xl  font-medium cursor-pointer hover:border-b-2 hover:border-primary`}
+                                    onClick={handleCreateNewForm}>
+                                    Create BMC
+                                </button>
+                            )
+                        }
                         <select name="canvas" className='w-52 border px-5' value={id} onChange={(e) => setId(e.target.value)}>
                             <option selected disabled value={'Select Canvas'}>Select Canvas</option>
                             {
@@ -337,7 +361,7 @@ export default function BMCModule() {
                         )
                     }
                 </div>
-                <div className='grid grid-cols-1 lg:grid-cols-5 grid-rows-4 border-2 border-gray-300'>
+                <div className='hidden lg:grid grid-cols-1 lg:grid-cols-5 grid-rows-4 border-2 border-gray-300'>
                     {
                         !canvasLoading ? (
                             <>
@@ -386,6 +410,73 @@ export default function BMCModule() {
                                     <Percentage objName={'RevenueStreams'} />
                                     <EditableDiv list={Text.ninthBox.questions} title={Text.ninthBox.title} objName={'RevenueStreams'} />
                                 </div>
+                            </>
+                        ) : (
+                            <div className="flex justify-center items-center gap-2 p-3 rounded-lg font-bold h-screen cursor-wait col-span-full">
+                                <svg className="h-20 w-20 animate-spin" viewBox="3 3 18 18">
+                                    <path
+                                        className="fill-gray-300"
+                                        d="M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z"></path>
+                                    <path
+                                        className="fill-primary"
+                                        d="M16.9497 7.05015C14.2161 4.31648 9.78392 4.31648 7.05025 7.05015C6.65973 7.44067 6.02656 7.44067 5.63604 7.05015C5.24551 6.65962 5.24551 6.02646 5.63604 5.63593C9.15076 2.12121 14.8492 2.12121 18.364 5.63593C18.7545 6.02646 18.7545 6.65962 18.364 7.05015C17.9734 7.44067 17.3403 7.44067 16.9497 7.05015Z"></path>
+                                </svg>
+                                <span className="text-4xl">Loading...</span>
+                            </div>
+                        )
+                    }
+                </div>
+
+                <div className='lg:hidden grid grid-cols-1 lg:grid-cols-5 grid-rows-4 border-2 border-gray-300'>
+                    {
+                        !canvasLoading ? (
+                            <>
+                                {/* CustomerSegments - box */}
+                                <div className='flex flex-col lg:row-span-2 lg:border-b-2 border-b-2 lg:border-gray-300 gap-2 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'CustomerSegments'} />
+                                    <EditableDiv list={Text.fifthBox.questions} title={Text.fifthBox.title} objName={'CustomerSegments'} />
+                                </div>
+                                {/* ValuePropositions - box */}
+                                <div className='flex flex-col lg:row-span-2 lg:border-r-2 lg:border-b-2 border-b-2 lg:border-gray-300 gap-2 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'ValuePropositions'} />
+                                    <EditableDiv list={Text.thirdBox.questions} title={Text.thirdBox.title} objName={'ValuePropositions'} />
+                                </div>
+                                {/* Channels - box */}
+                                <div className='flex flex-col lg:border-r-2 lg:border-b-2 border-b-2 lg:border-gray-300 gap-2 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'Channels'} />
+                                    <EditableDiv list={Text.seventhBox.questions} title={Text.seventhBox.title} objName={'Channels'} />
+                                </div>
+                                {/* CustomerRelationships - box */}
+                                <div className='flex flex-col lg:border-r-2 lg:border-b-2 border-b-2 lg:border-gray-300 gap-2 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'CustomerRelationships'} />
+                                    <EditableDiv list={Text.forthBox.questions} title={Text.forthBox.title} objName={'CustomerRelationships'} />
+                                </div>
+                                {/* RevenueStreams - box */}
+                                <div className='flex flex-col lg:row-span-2 lg:col-span-3 2xl:border-b-0 xl:border-b-0 lg:border-b-0 border-b-2 lg:border-gray-300 gap-2 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'RevenueStreams'} />
+                                    <EditableDiv list={Text.ninthBox.questions} title={Text.ninthBox.title} objName={'RevenueStreams'} />
+                                </div>
+                                {/* KeyResources - box */}
+                                <div className='flex flex-col lg:border-b-2 lg:border-r-2 border-b-2 lg:border-gray-300 gap-2 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'KeyResources'} />
+                                    <EditableDiv list={Text.sixthBox.questions} title={Text.sixthBox.title} objName={'KeyResources'} />
+                                </div>
+                                {/* KeyActivities - box */}
+                                <div className='flex flex-col lg:border-r-2 lg:border-b-2 border-b-2 lg:border-gray-300 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'KeyActivities'} />
+                                    <EditableDiv list={Text.secondBox.questions} title={Text.secondBox.title} objName={'KeyActivities'} />
+                                </div>
+                                {/* KeyPartnerships - box */}
+                                <div className=' flex flex-col lg:row-span-2 lg:col-span-1 2xl:border-r-2 xl:border-r-2 lg:border-r-2  border-r-0 border-b-2 border-gray-300 gap-2 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'KeyPartnerships'} />
+                                    <EditableDiv list={Text.firstBox.questions} title={Text.firstBox.title} objName={'KeyPartnerships'} />
+                                </div>
+                                {/* CostStructure - box */}
+                                <div className='flex flex-col lg:row-span-2 lg:col-span-2 lg:border-r-2 2xl:border-b-0 xl:border-b-0 lg:border-b-0 border-b-2 lg:border-gray-300 gap-2 w-full hover:bg-gray-100'>
+                                    <Percentage objName={'CostStructure'} />
+                                    <EditableDiv list={Text.eightBox.questions} title={Text.eightBox.title} objName={'CostStructure'} />
+                                </div>
+
                             </>
                         ) : (
                             <div className="flex justify-center items-center gap-2 p-3 rounded-lg font-bold h-screen cursor-wait col-span-full">
