@@ -128,10 +128,10 @@ const styles = StyleSheet.create({
     },
     footer: {
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginHorizontal: 20,
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-end",
+        marginHorizontal: 10,
         // backgroundColor: "red"
     },
     link: {
@@ -626,34 +626,45 @@ export default function BMCPdf({ form, canvas_name }) {
                 {data}
                 <Image style={styles.waterMark} src={'../../assets/watermark.png'} />
                 <View style={styles.footer}>
-                    <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center", marginLeft: 20 }}>
-                        <Image style={{ width: 26, height: 26 }} src={'../../assets/internet.png'} />
-                        <Link
-                            src={'https://steveondigital.com/'}
-                        >
-                            SteveOnDigital.com
-                        </Link>
-                    </View>
-                    <View style={{ flexDirection: "row", gap: 10, justifyContent: "center", alignItems: "center" }}>
-                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
-                            <Image style={{ width: 20, height: 20 }} src={'../../assets/youtube.png'} />
-                            <Link src={'https://www.youtube.com/@steveondigital'} style={{ fontSize: 14 }}>/@steveondigital</Link>
+                    <View style={{ display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 5 }}>
+                        <View style={{ flexDirection: "row", gap: 10, justifyContent: "center", alignItems: "center" }}>
+                            <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                                <Link src={'https://www.youtube.com/@steveondigital'} style={{ fontSize: 14 }}>
+                                    <Image style={{ width: 20, height: 20 }} src={'../../assets/youtube.png'} />
+                                    {/* /@steveondigital */}
+                                </Link>
+                            </View>
+                            <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                                <Link src={'https://www.facebook.com/steveondigital/'} style={{ fontSize: 14 }}>
+                                    <Image style={{ width: 20, height: 20 }} src={'../../assets/facebook.png'} />
+                                    {/* /steveondigital */}
+                                </Link>
+                            </View>
+                            <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                                <Link src={'https://twitter.com/SteveOnDigital1'} style={{ fontSize: 14 }}>
+                                    <Image style={{ width: 20, height: 20 }} src={'../../assets/twitter.png'} />
+                                    {/* /SteveOnDigital1 */}
+                                </Link>
+                            </View>
+                            <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                                <Link src={'https://www.instagram.com/steveondigital/'} style={{ fontSize: 14 }}>
+                                    <Image style={{ width: 20, height: 20 }} src={'../../assets/instagram.png'} />
+                                    {/* /steveondigital */}
+                                </Link>
+                            </View>
+                            <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
+                                <Link src={'https://www.linkedin.com/company/steveondigital-digital-transformation-simplified/'} style={{ fontSize: 14 }}>
+                                    <Image style={{ width: 20, height: 20 }} src={'../../assets/linkedin.png'} />
+                                    {/* /company/steveondigital-digital-transformation-simplified */}
+                                </Link>
+                            </View>
                         </View>
-                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
-                            <Image style={{ width: 20, height: 20 }} src={'../../assets/facebook.png'} />
-                            <Link src={'https://www.facebook.com/steveondigital/'} style={{ fontSize: 14 }}>/steveondigital</Link>
-                        </View>
-                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
-                            <Image style={{ width: 20, height: 20 }} src={'../../assets/twitter.png'} />
-                            <Link src={'https://twitter.com/SteveOnDigital1'} style={{ fontSize: 14 }}>/SteveOnDigital1</Link>
-                        </View>
-                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
-                            <Image style={{ width: 20, height: 20 }} src={'../../assets/instagram.png'} />
-                            <Link src={'https://www.instagram.com/steveondigital/'} style={{ fontSize: 14 }}>/steveondigital</Link>
-                        </View>
-                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center" }}>
-                            <Image style={{ width: 20, height: 20 }} src={'../../assets/linkedin.png'} />
-                            <Link src={'https://www.linkedin.com/company/steveondigital-digital-transformation-simplified/'} style={{ fontSize: 14 }}>/company/steveondigital-digital-transformation-simplified</Link>
+                        <View style={{ flexDirection: "row", gap: 5, justifyContent: "center", alignItems: "center", marginLeft: 10 }}>
+                            <Text style={{ fontSize: 12 }}>Website:</Text>
+                            <Link
+                                src={'https://steveondigital.com/'}>
+                                <Text style={{ fontSize: 12 }}>SteveOnDigital.com</Text>
+                            </Link>
                         </View>
                     </View>
                 </View>

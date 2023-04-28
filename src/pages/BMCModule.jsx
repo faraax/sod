@@ -186,7 +186,6 @@ export default function BMCModule() {
     return (
         <>
             <div className='px-2 2xl:px-24 xl:px-24 lg:px-24 md:px-16 py-10'>
-
                 <div className='hidden 2xl:flex xl:flex lg:flex md:hidden my-5 gap-4 btn:flex-col flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col sm:flex-col xs:flex-col'>
                     <div className='flex gap-5 items-center'>
                         <h3
@@ -272,37 +271,72 @@ export default function BMCModule() {
                             }
                         </select>
                     </div>
-                    <div className='flex ml-auto gap-3 justify-center w-full'>
-                        <div className='w-full'>
-                            <input type="text" name="Canvas" value={canvasName} placeholder='Type in the name of canvas' className='w-full px-5 py-3 border' required onChange={(e) => setCanvasName(e.target.value)} />
-                        </div>
-                    </div>
-                    <div className='flex gap-5 justify-center flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row xs:flex-col'>
-                        <PDFDownloadLink document={
-                            <Suspense fallback={<LoadingBtn />}>
-                                <BMCPdf form={form} />
-                            </Suspense>
-                        } fileName={id} className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
-                            <BiDownload className="text-xl" />
-                            Download
-                        </PDFDownloadLink>
-                        <button
-                            onClick={handlePostForm}
-                            className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
-                            Save Template
-                        </button>
-                        {
+                    {
+                        !confirm ? (
+                            <>
+                                <div className='flex ml-auto gap-3 justify-center w-full'>
+                                    <div className='w-full'>
+                                        <input type="text" name="Canvas" value={canvasName} placeholder='Type in the name of canvas' className='w-full px-5 py-3 border' required onChange={(e) => setCanvasName(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div className='flex gap-5 justify-center flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row xs:flex-col'>
+                                    <PDFDownloadLink document={
+                                        <Suspense fallback={<LoadingBtn />}>
+                                            <BMCPdf form={form} />
+                                        </Suspense>
+                                    } fileName={id} className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
+                                        <BiDownload className="text-xl" />
+                                        Download
+                                    </PDFDownloadLink>
+                                    <button
+                                        onClick={handlePostForm}
+                                        className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
+                                        Save Template
+                                    </button>
+                                    {
+                                        (id === 'Select Canvas') ? <></> : (
+                                            <button
+                                                // onClick={handleDelete}
+                                                onClick={() => setConfirm(true)}
+                                                className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
+                                                Delete Canvas
+                                            </button>
+                                        )
+                                    }
+                                </div>
+                            </>
+                        ) : (
                             (id === 'Select Canvas') ? <></> : (
-                                <button
-                                    onClick={handleDelete}
-                                    className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
-                                    Delete Canvas
-                                </button>
+                                <>
+                                    <button
+                                        onClick={handleDelete}
+                                        // onClick={() => setConfirm(true)}
+                                        className="bg-primary text-white p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
+                                        Yes, Delete Canvas
+                                    </button>
+                                    <button
+                                        // onClick={handleDelete}
+                                        onClick={() => setConfirm(false)}
+                                        className="border-primary border text-primary p-2 font-medium flex gap-3 justify-center items-center hover:bg-opacity-80 px-3 rounded-lg">
+                                        No, Keep Canvas
+                                    </button>
+                                </>
                             )
-                        }
-                    </div>
+                        )
+                    }
                 </div>
-
+                <div>
+                    {
+                        (canvas.length === 3) ? (
+                            <div>
+                                <h2 className='text-red-500 text-xl'> Canvas Saved: {canvas.length} /3 </h2>
+                                <p className='text-sm text-red-500 '>IMPORTANT: You reached the MAX of 3 Canvas. Delete one of your SAVED Canvas if you want to save your inputs.</p>
+                            </div>
+                        ) : (
+                            <h2 className='text-xl'> Canvas Saved: {canvas.length} /3 </h2>
+                        )
+                    }
+                </div>
                 <div className='grid grid-cols-1 lg:grid-cols-5 grid-rows-4 border-2 border-gray-300'>
                     {
                         !canvasLoading ? (
