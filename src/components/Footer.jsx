@@ -82,10 +82,10 @@ export default function Footer() {
                         src={'../../assets/FooterLogo.png'}
                         alt="Steve On Digital"
                         className="w-80 h-48" />
-                    <p className='text-xs w-2/3 text-center text-secondary'>
+                    {/* <p className='text-xs w-2/3 text-center text-secondary'>
                         test
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
+                    </p> */}
                     <div className='flex gap-5 text-3xl text-secondary'>
                         <a href="https://www.facebook.com/steveondigital/" target="_blank" rel="noopener noreferrer">
                             <span className='bg-white shadow-xl flex items-center justify-center rounded-full p-2 hover:text-primary transition-all cursor-pointer'>
