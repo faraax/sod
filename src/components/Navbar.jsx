@@ -5,12 +5,20 @@ import useOAuth from "../Hooks/useOAuth";
 import { ToastContainer } from 'react-toastify';
 import { FiLogOut } from 'react-icons/fi';
 import 'react-toastify/dist/ReactToastify.css';
+import Model from "./Login/Model";
 
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalType, setModalType] = useState(null);
     const { user } = useGlobalState();
-    const { notify, notifyHome, handleLogout, handleOAuth, handleSignup } = useOAuth();
+    const { notify, notifyHome, handleLogout } = useOAuth();
+
+    const handleModal = (type) => {
+        setIsModalOpen(!isModalOpen)
+        setModalType(type)
+    }
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -24,7 +32,7 @@ export default function Navbar() {
                         <img
                             src={'../../assets/SteveOnDigital-Logo.png'}
                             alt="Steve On Digital"
-                            className="w-44 h-24 cursor-pointer"
+                            className="w-40 h-24 cursor-pointer"
                         />
                     </Link>
                     <ul className={`hidden lg:flex lg:items-center gap-10 lg:justify-between w-full lg:w-auto text-xl cursor-pointer font-medium`}>
@@ -115,8 +123,10 @@ export default function Navbar() {
                 {
                     !user && (
                         <div className="hidden gap-5 text-lg ml-auto lg:flex">
-                            <button className="btn-primary" onClick={handleSignup}>Signup</button>
-                            <button className="btn-primary" onClick={handleOAuth}>Login</button>
+                            {/* <button className="btn-primary" onClick={handleSignup}>Signup</button>
+                            <button className="btn-primary" onClick={handleOAuth}>Login</button> */}
+                            <button className="btn-primary" onClick={() => handleModal('Signup')}>Signup</button>
+                            <button className="btn-primary" onClick={() => handleModal('Login')}>Login</button>
                         </div>
                     )
                 }
@@ -133,6 +143,9 @@ export default function Navbar() {
                 theme="colored"
             />
             <Outlet />
+            {
+                isModalOpen && <Model ModelName={modalType} setIsModalOpen={setIsModalOpen} setModalType={setModalType} />
+            }
         </>
     )
 }
