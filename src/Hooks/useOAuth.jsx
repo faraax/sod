@@ -8,10 +8,10 @@ import { redirect } from "react-router-dom";
 import { PublicClientApplication } from "@azure/msal-browser";
 
 const config = {
-    // appId: process.env.REACT_APP_ID_BING,
-    // redirectUrl: process.env.REACT_APP_HOMEPAGE,
-    appId: "18bc2b85-477f-4398-a26d-f954ff10e263",
-    redirectUrl: "https://toolbox.steveondigital.com/",
+    appId: process.env.REACT_APP_ID_BING,
+    redirectUrl: process.env.REACT_APP_HOMEPAGE,
+    // appId: "18bc2b85-477f-4398-a26d-f954ff10e263",
+    // redirectUrl: "https://toolbox.steveondigital.com/",
     scopes: [
         'user.read'
     ],
@@ -40,13 +40,16 @@ export default function useLogin() {
 
     // Microsoft Login
     const microsoftLogin = async (url) => {
-        const login = await microsoftAuth.loginPopup({
-            scopes: config.scopes,
-            prompt: "select_account"
-        })
-        Cookies.set("sodIdToken", login.accessToken);
-
-        // setBingSignupUser(false)
+        try {
+            const login = await microsoftAuth.loginPopup({
+                scopes: config.scopes,
+                prompt: "select_account"
+            })
+            Cookies.set("sodIdToken", login.accessToken);
+            setBingSignupUser(false)
+        } catch (err) {
+            console.log(err);
+        }
         let headersList = {
             "ngrok-skip-browser-warning": true,
             "Authorization": `Bearer ${Cookies.get('sodIdToken')}`
@@ -79,14 +82,18 @@ export default function useLogin() {
     }
 
     const microsoftSignup = async () => {
-        const login = await microsoftAuth.loginPopup({
-            scopes: config.scopes,
-            prompt: "select_account"
-        })
-        Cookies.set("sodIdToken", login.accessToken);
-        console.log(login);
-        setBingSignupUser(true)
-        setSignupUserInfo({ tenantId: login.account.tenantId, username: login.account.username, name: login.account.name, uniqueId: login.uniqueId })
+        try {
+            const login = await microsoftAuth.loginPopup({
+                scopes: config.scopes,
+                prompt: "select_account"
+            })
+            Cookies.set("sodIdToken", login.accessToken);
+            console.log(login);
+            setBingSignupUser(true)
+            setSignupUserInfo({ tenantId: login.account.tenantId, username: login.account.username, name: login.account.name, uniqueId: login.uniqueId })
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     const notify = () => toast.warn("Please Login First", {
