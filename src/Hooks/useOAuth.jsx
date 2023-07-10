@@ -84,6 +84,7 @@ export default function useLogin() {
             prompt: "select_account"
         })
         Cookies.set("sodIdToken", login.accessToken);
+        console.log(login);
         setBingSignupUser(true)
         setSignupUserInfo({ tenantId: login.account.tenantId, username: login.account.username, name: login.account.name, uniqueId: login.uniqueId })
     }
