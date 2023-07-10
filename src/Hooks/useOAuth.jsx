@@ -8,8 +8,10 @@ import { redirect } from "react-router-dom";
 import { PublicClientApplication } from "@azure/msal-browser";
 
 const config = {
-    appId: process.env.REACT_APP_ID_BING,
-    redirectUrl: process.env.REACT_APP_HOMEPAGE,
+    // appId: process.env.REACT_APP_ID_BING,
+    // redirectUrl: process.env.REACT_APP_HOMEPAGE,
+    appId: "18bc2b85-477f-4398-a26d-f954ff10e263",
+    redirectUrl: "https://toolbox.steveondigital.com/",
     scopes: [
         'user.read'
     ],
