@@ -57,26 +57,18 @@ export default function useLogin() {
         try {
             let response = await axios.request(reqOptions);
             dispatch({ type: "LOGIN", payload: response.data });
-            // console.log("Resp=>", response.data);
             toast.success(`Welcome : ${user.data.name}`, {
                 position: "bottom-right",
                 autoClose: 1000,
-                // hideProgressBar: false,
                 closeOnClick: true,
-                // pauseOnHover: true,
-                // draggable: true,
                 progress: true,
                 theme: "colored",
             });
         } catch (err) {
-            // Cookies.remove("sodIdToken");
             toast.error(err.response.data.message, {
                 position: "bottom-right",
                 autoClose: 1000,
-                // hideProgressBar: false,
                 closeOnClick: true,
-                // pauseOnHover: true,
-                // draggable: true,
                 progress: true,
                 theme: "colored",
             });
@@ -180,26 +172,18 @@ export default function useLogin() {
             try {
                 let response = await axios.request(reqOptions);
                 dispatch({ type: "LOGIN", payload: response.data });
-                // console.log("Resp=>", response.data);
                 toast.success(`Welcome : ${user.data.name}`, {
                     position: "bottom-right",
                     autoClose: 1000,
-                    // hideProgressBar: false,
                     closeOnClick: true,
-                    // pauseOnHover: true,
-                    // draggable: true,
                     progress: true,
                     theme: "colored",
                 });
             } catch (err) {
-                // Cookies.remove("sodIdToken");
                 toast.error(err.response.data.message, {
                     position: "bottom-right",
                     autoClose: 1000,
-                    // hideProgressBar: false,
                     closeOnClick: true,
-                    // pauseOnHover: true,
-                    // draggable: true,
                     progress: true,
                     theme: "colored",
                 });
