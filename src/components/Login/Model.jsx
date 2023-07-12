@@ -4,9 +4,9 @@ import { SlClose } from 'react-icons/sl'
 import { AnimatePresence, motion } from 'framer-motion'
 import useOAuth from "../../Hooks/useOAuth";
 import { useEffect } from 'react';
-import { redirect } from 'react-router-dom';
-import { useGlobalState } from '../../Hooks/useGlobalState';
-import Cookies from "js-cookie";
+// import { redirect } from 'react-router-dom';
+// import { useGlobalState } from '../../Hooks/useGlobalState';
+// import Cookies from "js-cookie";
 
 
 
