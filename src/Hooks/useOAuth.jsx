@@ -10,8 +10,8 @@ import { PublicClientApplication } from "@azure/msal-browser";
 const config = {
     appId: process.env.REACT_APP_ID_BING,
     redirectUrl: process.env.REACT_APP_HOMEPAGE,
-    // appId: "18bc2b85-477f-4398-a26d-f954ff10e263",
-    // redirectUrl: "https://toolbox.steveondigital.com/",
+    // appId: "6963a19c-f208-443f-9f10-d78c9aff2ae1",
+    // redirectUrl: "http://localhost:3000/",
     scopes: [
         'user.read'
     ],
@@ -30,7 +30,7 @@ export default function useLogin() {
     const microsoftAuth = new PublicClientApplication({
         auth: {
             clientId: config.appId,
-            redirectUri: config.redirectUrl
+            redirectUri: config.redirectUrl,
         },
         cache: {
             cacheLocation: "sessionStorage",
