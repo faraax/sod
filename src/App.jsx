@@ -11,6 +11,7 @@ const BMCModule = React.lazy(() => import("./pages/BMCModule"))
 
 function App() {
   const { user, authIsReady } = useGlobalState();
+
   return (
     <div className="font-sans">
       {

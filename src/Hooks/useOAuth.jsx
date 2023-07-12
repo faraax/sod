@@ -4,8 +4,8 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useGlobalState } from "./useGlobalState";
 import { toast } from 'react-toastify';
-import { redirect } from "react-router-dom";
 import { PublicClientApplication } from "@azure/msal-browser";
+// import { redirect, useNavigate } from "react-router-dom";
 
 const config = {
     appId: process.env.REACT_APP_ID_BING,
@@ -25,6 +25,7 @@ export default function useLogin() {
     const [loginUser, setLoginUser] = useState(false);
     const { dispatch, user } = useGlobalState();
     const token = Cookies.get('sodIdToken');
+    // const navigate = useNavigate();
 
     const microsoftAuth = new PublicClientApplication({
         auth: {
@@ -52,7 +53,9 @@ export default function useLogin() {
         }
         let headersList = {
             "ngrok-skip-browser-warning": true,
-            "Authorization": `Bearer ${Cookies.get('sodIdToken')}`
+            "Authorization": `Bearer ${Cookies.get('sodIdToken')}`,
+            // "Cross-Origin-Embedder-Policy": "require-corp",
+            // "Cross-Origin-Opener-Policy": "same-origin"
         }
         let reqOptions = {
             url,
@@ -120,14 +123,10 @@ export default function useLogin() {
 
     const handleLogout = () => {
         googleLogout()
-        // microsoftAuth.logoutRedirect()
         Cookies.remove("sodIdToken");
         dispatch({ type: "LOGOUT" });
-        // navigate('/')
-        redirect('/')
         setLoginUser(false)
         window.location.href = '/'
-        // window.location.reload(true);
     }
 
     // Login
@@ -137,8 +136,13 @@ export default function useLogin() {
                 await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
                     headers: {
                         "Authorization": `Bearer ${respose.access_token}`,
+                        // "Cross-Origin-Opener-Policy": "allow-same-origin",
+                        // "Cross-Origin-Embedder-Policy": "require-corp",
+                        // "Cross-Origin-Opener-Policy": "same-origin"
                     }
                 })
+                window.location.href = `${process.env.REACT_APP_HOMEPAGE}BMC-Module`
+                // window.location.href = `http://localhost:3000/BMC-Module`
                 setLoginUser(true)
                 Cookies.set("sodIdToken", respose.access_token);
             } catch (err) {
@@ -172,7 +176,9 @@ export default function useLogin() {
             setLoginUser(false)
             let headersList = {
                 "ngrok-skip-browser-warning": true,
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                // "Cross-Origin-Embedder-Policy": "require-corp",
+                // "Cross-Origin-Opener-Policy": "same-origin"
             }
             let reqOptions = {
                 url,
@@ -205,7 +211,9 @@ export default function useLogin() {
             setSignupUser(false)
             let headersList = {
                 "ngrok-skip-browser-warning": true,
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                // "Cross-Origin-Embedder-Policy": "require-corp",
+                // "Cross-Origin-Opener-Policy": "same-origin"
             }
             let reqOptions = {
                 url,
@@ -249,7 +257,9 @@ export default function useLogin() {
             setBingSignupUser(false)
             let headersList = {
                 "ngrok-skip-browser-warning": true,
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                // "Cross-Origin-Embedder-Policy": "require-corp",
+                // "Cross-Origin-Opener-Policy": "same-origin"
             }
             let reqOptions = {
                 url,

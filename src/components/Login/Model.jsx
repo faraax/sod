@@ -4,11 +4,15 @@ import { SlClose } from 'react-icons/sl'
 import { AnimatePresence, motion } from 'framer-motion'
 import useOAuth from "../../Hooks/useOAuth";
 import { useEffect } from 'react';
+import { redirect } from 'react-router-dom';
+import { useGlobalState } from '../../Hooks/useGlobalState';
+import Cookies from "js-cookie";
 
 
 
 export default function Model({ ModelName, setIsModalOpen, setModalType }) {
     const { handleOAuth, handleSignup, microsoftLogin, microsoftSignup } = useOAuth();
+    // const { user } = useGlobalState()
 
     useEffect(() => {
         const handleEsc = (event) => {
@@ -17,7 +21,6 @@ export default function Model({ ModelName, setIsModalOpen, setModalType }) {
             }
         };
         window.addEventListener('keydown', handleEsc);
-
         return () => {
             window.removeEventListener('keydown', handleEsc);
         };
