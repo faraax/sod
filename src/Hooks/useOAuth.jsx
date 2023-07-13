@@ -10,10 +10,11 @@ import { PublicClientApplication } from "@azure/msal-browser";
 const config = {
     appId: process.env.REACT_APP_ID_BING,
     redirectUrl: process.env.REACT_APP_HOMEPAGE,
-    // appId: "6963a19c-f208-443f-9f10-d78c9aff2ae1",
+    // appId: "18bc2b85-477f-4398-a26d-f954ff10e263",
     // redirectUrl: "http://localhost:3000/",
     scopes: [
-        'user.read'
+        // 'user.read',
+        "https://management.core.windows.net/.default"
     ],
     // authority: "f8cdef31-a31e-4b4a-93e4-5f571e91255a"
 }
@@ -31,6 +32,7 @@ export default function useLogin() {
         auth: {
             clientId: config.appId,
             redirectUri: config.redirectUrl,
+            // client_secret: '<my client secret>'
         },
         cache: {
             cacheLocation: "sessionStorage",
@@ -47,9 +49,10 @@ export default function useLogin() {
                 prompt: "select_account"
             })
             Cookies.set("sodIdToken", login.accessToken);
+            console.log(login.accessToken);
             setBingSignupUser(false)
         } catch (err) {
-            console.log(err);
+            console.log("err =>1", err);
         }
         let headersList = {
             "ngrok-skip-browser-warning": true,
@@ -80,7 +83,7 @@ export default function useLogin() {
                 progress: true,
                 theme: "colored",
             });
-            console.log(err);
+            console.log("Error =>", err);
         }
     }
 
